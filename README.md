@@ -2,7 +2,7 @@
 
 ### Usage
 
-This is a project template for [vue-cli](https://github.com/vuejs/vue-cli).
+This is a project template for [Vue Fullstack Starter](https://github.com/Shyam-Chen/Vue-Fullstack-Starter) and generates a blank project via [Vue CLI](https://github.com/vuejs/vue-cli).
 
 ``` bash
 $ yarn global add vue-cli
