@@ -1,0 +1,63 @@
+{
+  "plugins": [
+    "vue",
+    "flowtype",
+    "flowtype-errors"
+  ],
+  "env": {
+    "browser": true,
+    "node": true,
+    "commonjs": true,
+    "es6": true,
+    "jest": true
+  },
+  "globals": {},
+  "extends": [
+    "airbnb-base",
+    "plugin:vue/recommended",
+    "plugin:flowtype/recommended"
+  ],
+  "parser": "vue-eslint-parser",
+  "parserOptions": {
+    "parser": "babel-eslint",
+    "sourceType": "module"
+  },
+  "settings": {
+    "import/resolver": {
+      "webpack": {
+        "config": "webpack.config.js"
+      },
+      "babel-plugin-root-import": {
+        "rootPathPrefix": "~",
+        "rootPathSuffix": "src/api"
+      }
+    }
+  },
+  "rules": {
+    // Plugins
+    "import/extensions": ["error", "always", { "js": "never", "vue": "never" }],
+    "import/prefer-default-export": "off",
+
+    "vue/max-attributes-per-line": "off",
+    "vue/html-self-closing": "off",
+
+    "flowtype-errors/show-errors": "error",
+    "flowtype-errors/show-warnings": "warn",
+
+    // Possible Errors
+
+    // Best Practices
+    "no-param-reassign": ["error", { "props": true, "ignorePropertyModificationsFor": ["state", "acc", "event"] }],
+
+    // Variables
+
+    // Node.js and CommonJS
+
+    // Stylistic Issues
+    "function-paren-newline": "off",
+    "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
+    "object-curly-newline": ["error", { "consistent": true }]
+
+    // JS.Next
+  }
+}
