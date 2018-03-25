@@ -48,7 +48,7 @@
     <v-toolbar color="blue darken-3" dark app :clipped-left="$vuetify.breakpoint.mdAndUp" fixed>
       <v-toolbar-title class="ml-0 pl-3" style="width: 300px">
         <v-toolbar-side-icon @click.stop="$app.drawer = !$app.drawer"></v-toolbar-side-icon>
-        <router-link class="hidden-sm-and-down white--text" style="text-decoration: none" to="/">Vue by Example</router-link>
+        <router-link class="hidden-sm-and-down white--text" style="text-decoration: none" to="/">Name here</router-link>
       </v-toolbar-title>
 
       <v-text-field flat solo-inverted prepend-icon="search" label="Search" class="hidden-sm-and-down"></v-text-field>
@@ -74,7 +74,7 @@
 
     <v-footer inset class="pa-3 blue darken-3 white--text">
       <v-spacer></v-spacer>
-      <div>&copy; {{ new Date().getFullYear() }} - Vue by Example</div>
+      <div>Footer here</div>
     </v-footer>
 
   </v-app>
