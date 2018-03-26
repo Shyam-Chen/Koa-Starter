@@ -9,26 +9,12 @@
     "build:api": "cross-env BABEL_ENV=api gulp --prod",
     "test:app": "cross-env BABEL_ENV=app TEST_ENV=app jest \"src/app/.*\\.js$\" --coverage --forceExit",
     "test:api": "cross-env BABEL_ENV=api TEST_ENV=api jest \"src/api/.*\\.js$\" --coverage --forceExit",
-    "e2e:app": "cross-env BABEL_ENV=app jest \"src/app/.*\\.e2e.*\\.(js)$\" --forceExit",
-    "e2e:api": "cross-env BABEL_ENV=api jest \"src/api/.*\\.e2e.*\\.(js)$\" --forceExit",
+    "e2e:app": "cross-env BABEL_ENV=app TEST_ENV=e2e jest \"src/app/.*\\.e2e.*\\.(js)$\" --forceExit",
+    "e2e:api": "cross-env BABEL_ENV=api TEST_ENV=e2e jest \"src/api/.*\\.e2e.*\\.(js)$\" --forceExit",
     "typed": "flow-typed install",
     "codecov": "codecov",
     "firebase": "firebase"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Shyam-Chen/Vue-Fullstack-Starter.git"
-  },
-  "keywords": [
-    "Vue",
-    "Fullstack"
-  ],
-  "author": "Yen-cheng Chen, 陳彥澄",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/Shyam-Chen/Vue-Fullstack-Starter/issues"
-  },
-  "homepage": "https://github.com/Shyam-Chen/Vue-Fullstack-Starter#readme",
   "dependencies": {
     "apollo-cache-inmemory": "1.1.11",
     "apollo-client": "2.2.7",
@@ -58,6 +44,7 @@
   "devDependencies": {
     "@babel/helper-module-imports": "7.0.0-beta.40",
     "@babel/plugin-syntax-jsx": "7.0.0-beta.40",
+    "@kazupon/vue-i18n-loader": "0.3.0",
     "@vue/test-utils": "1.0.0-beta.12",
     "babel-cli": "6.26.0",
     "babel-core": "6.26.0",
@@ -122,6 +109,7 @@
     "vue-loader": "14.2.1",
     "vue-template-compiler": "2.5.16",
     "webpack": "3.11.0",
-    "webpack-dev-server": "2.11.1"
+    "webpack-dev-server": "2.11.1",
+    "yaml-loader": "0.5.0"
   }
 }

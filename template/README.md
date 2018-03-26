@@ -2,33 +2,16 @@
 
 :poodle: A boilerplate for Vue, Material, Express, Babel, Flow, and ReactiveX.
 
-[![Build Status](https://img.shields.io/circleci/project/Shyam-Chen/Vue-Fullstack-Starter/develop.svg)](https://circleci.com/gh/Shyam-Chen/Vue-Fullstack-Starter)
-[![Coverage Status](https://img.shields.io/codecov/c/github/Shyam-Chen/Vue-Fullstack-Starter/develop.svg)](https://codecov.io/gh/Shyam-Chen/Vue-Fullstack-Starter)
- //
-[![dependencies Status](https://david-dm.org/Shyam-Chen/Vue-Fullstack-Starter/status.svg)](https://david-dm.org/Shyam-Chen/Vue-Fullstack-Starter)
-[![devDependencies Status](https://david-dm.org/Shyam-Chen/Vue-Fullstack-Starter/dev-status.svg)](https://david-dm.org/Shyam-Chen/Vue-Fullstack-Starter?type=dev)
-
-[Live Demo (Dev)](https://vue-by-example-dev.firebaseapp.com/) | [Live Demo (Prod)](https://vue-by-example-prod.firebaseapp.com/)
-
 ## Table of Contents
 
 * [Getting Started](#getting-started)
-* [Project Template](#project-template)
-* [Practical Examples](#practical-examples)
 * [Dockerization](#dockerization)
 * [Configuration](#configuration)
 * [Directory Structure](#directory-structure)
 
 ## Getting Started
 
-1. Clone this Boilerplate
-
-```bash
-$ git clone --depth 1 https://github.com/Shyam-Chen/Vue-Fullstack-Starter <PROJECT_NAME>
-$ cd <PROJECT_NAME>
-```
-
-2. Install Dependencies
+1. Install Dependencies
 
 ```bash
 $ yarn install
@@ -37,7 +20,7 @@ $ yarn install
 $ yarn typed
 ```
 
-3. Run the code
+2. Run the code
 
 ```bash
 # front-end
@@ -48,7 +31,7 @@ $ yarn start:api
 $ firebase serve --only functions
 ```
 
-4. Build the code
+3. Build the code
 
 ```bash
 # front-end
@@ -58,7 +41,7 @@ $ yarn build:app
 $ yarn build:api
 ```
 
-5. Run the test
+4. Run the test
 
 ```bash
 # front-end
@@ -68,7 +51,7 @@ $ yarn test:app
 $ yarn test:api
 ```
 
-6. Run the e2e
+5. Run the e2e
 
 ```bash
 # front-end
@@ -77,56 +60,6 @@ $ yarn e2e:app
 # back-end
 $ yarn e2e:api
 ```
-
-## Project Template
-
-Generate a blank project via Vue CLI
-
-1. Install Vue CLI
-
-```bash
-$ yarn global add vue-cli
-```
-
-2. Create your project
-
-```bash
-$ vue init Shyam-Chen/Vue-Fullstack-Template <PROJECT_NAME>
-```
-
-## Practical Examples
-
-* [ ] CRUD Operations
-  * [x] Basic
-  * [x] REST (`axios`)
-  * [ ] GraphQL (`vue-apollo`)
-* [ ] Form Controls
-  * [x] Template-driven
-  * [ ] Reactive (`rxjs`)
-* [ ] Data Table
-  * [ ] Basic
-  * [ ] REST (`axios`)
-  * [ ] GraphQL (`vue-apollo`)
-* [ ] Globalization
-  * [x] Internationalization (`vue-i18n`)
-  * [ ] Localization
-* [ ] Authorization
-  * [ ] REST (`axios`)
-  * [ ] GraphQL (`vue-apollo`)
-* [ ] Data Visualization
-  * [ ] Chart (`vue-chartjs`)
-  * [ ] Map
-* [ ] Realtime
-  * [ ] Socket.IO (`socket.io`)
-  * [ ] GraphQL Subscriptions (`graphql-subscriptions`)
-* [ ] Playground
-  * [x] Counter
-    * [x] State Management (`vuex`)
-    * [x] Asynchronous (`rxjs`)
-  * [ ] Stepper
-  * [ ] Calendar
-  * [ ] Media
-  * [ ] QR Code
 
 ## Dockerization
 

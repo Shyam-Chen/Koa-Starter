@@ -5,7 +5,7 @@ export default {
   },
   render() {
     return (
-      <v-layout class="notfound">
+      <v-layout class="vfs-notfound">
         <h1 class="pa-3">404</h1>
       </v-layout>
     );
@@ -14,7 +14,7 @@ export default {
 </script>
 
 <style scoped>
-.notfound {
+.vfs-notfound {
   position: absolute;
   left: 0;
   top: 0;

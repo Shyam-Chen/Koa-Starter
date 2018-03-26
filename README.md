@@ -1,15 +1,23 @@
 # Vue Fullstack Template
 
-### Usage
+:paw_prints: Project template for [Vue Fullstack Starter](https://github.com/Shyam-Chen/Vue-Fullstack-Starter) and generates a blank project via [Vue CLI](https://github.com/vuejs/vue-cli).
 
-This is a project template for [Vue Fullstack Starter](https://github.com/Shyam-Chen/Vue-Fullstack-Starter) and generates a blank project via [Vue CLI](https://github.com/vuejs/vue-cli).
+## Usage
 
-``` bash
+1. Install Vue CLI
+
+```bash
 $ yarn global add vue-cli
-$ vue init Shyam-Chen/Vue-Fullstack-Template <PROJECT_NAME>
-$ cd <PROJECT_NAME>
-$ yarn install
+```
 
-$ yarn start:app
-$ yarn start:api
+2. Create a project
+
+```bash
+$ vue init Shyam-Chen/Vue-Fullstack-Template <PROJECT_NAME>
+```
+
+3. Go to project folder to start your journey
+
+```bash
+$ cd <PROJECT_NAME>
 ```

@@ -7,15 +7,11 @@ export default {
   },
   render() {
     return (
-      <v-layout column>
-
-        <v-layout justify-center>
-          <div class="pa-3 text-center">
-            <div class="display-1">Vue by Example</div>
-            <img src={logo} alt="Logo" class="pa-3" />
-          </div>
-        </v-layout>
-
+      <v-layout fill-height justify-center align-center>
+        <div class="text-xs-center">
+          <div class="display-1 pa-3 blue--text">Vue by Example</div>
+          <img src={logo} alt="Logo" class="pa-3" />
+        </div>
       </v-layout>
     );
   },
@@ -23,7 +19,4 @@ export default {
 </script>
 
 <style scoped>
-.text-center {
-  text-align: center;
-}
 </style>
