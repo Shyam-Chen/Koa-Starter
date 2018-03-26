@@ -1,7 +1,7 @@
 {
-  "name": "Vue-Fullstack-Starter",
+  "name": "{{ name }}",
   "version": "1.0.0",
-  "description": "A boilerplate for Vue, Material, Express, Babel, Flow, and ReactiveX.",
+  "description": "{{ description }}",
   "scripts": {
     "start:app": "cross-env BABEL_ENV=app webpack-dev-server --progress",
     "start:api": "cross-env BABEL_ENV=api gulp",
@@ -15,6 +15,9 @@
     "codecov": "codecov",
     "firebase": "firebase"
   },
+  "author": "{{ author }}",
+  "license": "{{ license }}",
+  "private": true,
   "dependencies": {
     "apollo-cache-inmemory": "1.1.11",
     "apollo-client": "2.2.7",
