@@ -1,7 +1,22 @@
-export const INITIAL = {
-  drawer: null,
+// @flow
+
+export interface Navigation {
+  icon?: string;
+  text?: string;
+  route?: string;
+  disabled?: boolean;
+  subheader?: string;
+  children?: Navigation[];
+}
+
+export interface IApp {
+  drawer: boolean;
+  navigation: Navigation[];
+}
+
+export const INITIAL: IApp = {
+  drawer: true,
   navigation: [
-    { icon: 'loyalty', text: 'Overview', route: '/' },
     { icon: 'face', text: 'Hello World', route: '/hello-world' },
   ],
 };

@@ -5,39 +5,56 @@
       <v-list dense>
         <template v-for="item in $app.navigation">
 
-          <v-subheader v-if="item.subheader">\{{ item.subheader }}</v-subheader>
+          <v-subheader v-if="item.subheader" :key="item.subheader">\{{ item.subheader }}</v-subheader>
 
           <!-- if children -->
-          <v-list-group v-if="item.children" v-model="item.model" :key="item.text" :prepend-icon="item.icon" :disabled="item.disabled">
+          <v-list-group v-if="item.children" :key="item.text" :prepend-icon="item.icon" :disabled="item.disabled">
             <v-list-tile slot="activator">
               <v-list-tile-content>
-                <v-list-tile-title>
-                  \{{ item.text }}
-                </v-list-tile-title>
+                <v-list-tile-title>\{{ item.text }}</v-list-tile-title>
               </v-list-tile-content>
             </v-list-tile>
 
-            <v-list-tile v-for="(child, index) in item.children" :key="index" :to="child.route" :disabled="child.disabled">
-              <v-list-tile-action>
-                <v-icon>\{{ child.icon }}</v-icon>
-              </v-list-tile-action>
-              <v-list-tile-content>
-                <v-list-tile-title>
-                  \{{ child.text }}
-                </v-list-tile-title>
-              </v-list-tile-content>
-            </v-list-tile>
+            <template v-for="child in item.children">
+
+              <!-- if sub-children -->
+              <v-list-group v-if="child.children" :key="child.text" :prepend-icon="child.icon" :disabled="child.disabled" sub-group>
+                <v-list-tile slot="activator">
+                  <v-list-tile-content>
+                    <v-list-tile-title>\{{ child.text }}</v-list-tile-title>
+                  </v-list-tile-content>
+                </v-list-tile>
+
+                <v-list-tile v-for="subchild in child.children" :key="subchild.text" :to="subchild.route" :disabled="subchild.disabled">
+                  <v-list-tile-action>
+                    <v-icon>\{{ subchild.icon }}</v-icon>
+                  </v-list-tile-action>
+                  <v-list-tile-content>
+                    <v-list-tile-title>\{{ subchild.text }}</v-list-tile-title>
+                  </v-list-tile-content>
+                </v-list-tile>
+              </v-list-group>
+
+              <!-- else not sub-children -->
+              <v-list-tile v-else :key="child.text" :to="child.route" :disabled="child.disabled">
+                <v-list-tile-action>
+                  <v-icon>\{{ child.icon }}</v-icon>
+                </v-list-tile-action>
+                <v-list-tile-content>
+                  <v-list-tile-title>\{{ child.text }}</v-list-tile-title>
+                </v-list-tile-content>
+              </v-list-tile>
+
+            </template>
           </v-list-group>
 
-          <!-- else -->
+          <!-- else not children -->
           <v-list-tile v-else :key="item.text" :to="item.route" :disabled="item.disabled">
             <v-list-tile-action>
               <v-icon>\{{ item.icon }}</v-icon>
             </v-list-tile-action>
             <v-list-tile-content>
-              <v-list-tile-title>
-                \{{ item.text }}
-              </v-list-tile-title>
+              <v-list-tile-title>\{{ item.text }}</v-list-tile-title>
             </v-list-tile-content>
           </v-list-tile>
 
@@ -83,9 +100,11 @@
 <script>
 // @flow
 
+import { IApp } from './constants';
+
 export default {
   computed: {
-    $app() {
+    $app(): IApp {
       return this.$store.state;
     },
   },

@@ -21,3 +21,5 @@ $ vue init Shyam-Chen/Vue-Fullstack-Template <PROJECT_NAME>
 ```bash
 $ cd <PROJECT_NAME>
 ```
+
+[NOTE] Detailed features and usage please go to [Vue Fullstack Starter](https://github.com/Shyam-Chen/Vue-Fullstack-Starter).
