@@ -6,7 +6,7 @@ const CopyPlugin = require('copy-webpack-plugin');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const SWPrecachePlugin = require('sw-precache-webpack-plugin');
 const RobotstxtPlugin = require('robotstxt-webpack-plugin').default;
-// const PrerenderSpaPlugin = require('prerender-spa-plugin');
+const PrerenderSpaPlugin = require('prerender-spa-plugin');
 const envify = require('process-envify');
 const uglify = require('uglify-es');
 
@@ -155,11 +155,12 @@ module.exports = ({ prod = false } = {}) => ({
       stripPrefix: `${path.basename(DIST_ROOT)}/`,
     }),
     prod && new RobotstxtPlugin(),
-    // prod && new PrerenderSpaPlugin(
-    //   DIST_ROOT,
-    //   ['/'],
-    //   {},
-    // ),
+    prod && new PrerenderSpaPlugin({
+      staticDir: DIST_ROOT,
+      routes: [
+        '/',
+      ],
+    }),
   ].filter(Boolean),
   devServer: {
     contentBase: DIST_ROOT,
