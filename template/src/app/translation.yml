@@ -1,0 +1,8 @@
+en:
+  helloWorld: 'Hello World'
+
+zh:
+  helloWorld: '你好世界'
+
+ja:
+  helloWorld: 'こんにちは世界'

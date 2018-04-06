@@ -55,6 +55,10 @@ module.exports = ({ prod = false } = {}) => ({
         ],
       },
       {
+        test: /\.yml$/,
+        use: ['json5-loader', 'yaml-loader'],
+      },
+      {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
         loader: 'url-loader',
         options: {
@@ -151,6 +155,7 @@ module.exports = ({ prod = false } = {}) => ({
       cacheId: pkg.name,
       filename: 'service-worker.js',
       minify: true,
+      navigateFallback: 'index.html',
       staticFileGlobs: [`${path.basename(DIST_ROOT)}/*`],
       stripPrefix: `${path.basename(DIST_ROOT)}/`,
     }),
@@ -158,8 +163,11 @@ module.exports = ({ prod = false } = {}) => ({
     prod && new PrerenderSpaPlugin({
       staticDir: DIST_ROOT,
       routes: [
-        '/',
+        '/hello-world',
       ],
+      renderer: new PrerenderSpaPlugin.PuppeteerRenderer({
+        renderAfterDocumentEvent: 'render-event',
+      }),
     }),
   ].filter(Boolean),
   devServer: {

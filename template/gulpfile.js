@@ -1,5 +1,7 @@
+const path = require('path');
 const gulp = require('gulp');
 const util = require('gulp-util');
+const plumber = require('gulp-plumber');
 const replaces = require('gulp-replaces');
 const babel = require('gulp-babel');
 const rename = require('gulp-rename');
@@ -8,6 +10,8 @@ const envify = require('process-envify');
 const runSequence = require('run-sequence');
 
 const env = require('./env');
+
+const DIST_ROOT = path.join(__dirname, 'functions');
 
 gulp.task('build', () =>
   gulp
@@ -19,21 +23,22 @@ gulp.task('build', () =>
       '!src/assets', '!src/assets/**/*',
       '!src/**/__tests__', '!src/**/__tests__/**/*',
     ])
+    .pipe(plumber())
     .pipe(replaces(envify(env)))
     .pipe(babel())
-    .pipe(gulp.dest('functions')),
+    .pipe(gulp.dest(DIST_ROOT)),
 );
 
 gulp.task('copy', () =>
   gulp.src(['./package.json', './yarn.lock'])
-    .pipe(gulp.dest('functions')),
+    .pipe(gulp.dest(DIST_ROOT)),
 );
 
 gulp.task('rename', () =>
   gulp.src('./functions/server.js')
     .pipe(rimraf())
     .pipe(rename('index.js'))
-    .pipe(gulp.dest('functions')),
+    .pipe(gulp.dest(DIST_ROOT)),
 );
 
 gulp.task('rebuild', done => runSequence('build', 'rename', done));
@@ -41,7 +46,7 @@ gulp.task('rebuild', done => runSequence('build', 'rename', done));
 gulp.task('watch', () => {
   gulp.watch([
     'src/server.js',
-    'src/api/*',
+    'src/api/**/*',
     '!src/api/**/__tests__/**/*',
   ], ['rebuild']);
 });

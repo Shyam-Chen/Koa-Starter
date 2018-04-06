@@ -1,4 +1,4 @@
-switch (process.env.TEST_ENV) {
+switch (process.env.JEST_ENV) {
   case 'app':
     module.exports = {
       moduleFileExtensions: ['js', 'vue'],
@@ -11,11 +11,12 @@ switch (process.env.TEST_ENV) {
       ],
       testPathIgnorePatterns: [
         '<rootDir>/node_modules/',
-        '.*\\.e2e.*\\.(js)$',
+        '.*\\.e2e-spec.js$',
       ],
       transform: {
-        '^.+\\.js$': '<rootDir>/node_modules/babel-jest',
-        '.*\\.(vue)$': '<rootDir>/node_modules/vue-jest',
+        '^.+\\.js$': 'babel-jest',
+        '^.+\\.vue$': 'vue-jest',
+        '^.+\\.yml$': 'yaml-jest',
       },
     };
     break;
@@ -28,10 +29,10 @@ switch (process.env.TEST_ENV) {
       setupTestFrameworkScriptFile: '<rootDir>/tools/setup-api.js',
       testPathIgnorePatterns: [
         '<rootDir>/node_modules/',
-        '.*\\.e2e.*\\.(js)$',
+        '.*\\.e2e-spec.js$',
       ],
       transform: {
-        '^.+\\.js$': '<rootDir>/node_modules/babel-jest',
+        '^.+\\.js$': 'babel-jest',
       },
     };
     break;
@@ -39,8 +40,12 @@ switch (process.env.TEST_ENV) {
   case 'e2e':
     module.exports = {
       setupTestFrameworkScriptFile: '<rootDir>/tools/setup-e2e.js',
+      testPathIgnorePatterns: [
+        '<rootDir>/node_modules/',
+        '.*\\.spec.js$',
+      ],
       transform: {
-        '^.+\\.js$': '<rootDir>/node_modules/babel-jest',
+        '^.+\\.js$': 'babel-jest',
       },
     };
     break;

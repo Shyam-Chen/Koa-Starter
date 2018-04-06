@@ -10,13 +10,23 @@ export interface Navigation {
 }
 
 export interface IApp {
-  drawer: boolean;
+  theme: string;
   navigation: Navigation[];
+  drawer: boolean | null;
+  languages?: Array<{ key: string, label: string }>;
 }
 
+export interface IComponent {}
+
 export const INITIAL: IApp = {
-  drawer: true,
+  theme: localStorage.getItem('theme') || 'light',
   navigation: [
-    { icon: 'face', text: 'Hello World', route: '/hello-world' },
+    { icon: 'face', text: 'helloWorld', route: '/hello-world' },
+  ],
+  drawer: false || null,
+  languages: [
+    { key: 'en', label: 'English' },
+    { key: 'zh', label: '中文' },
+    { key: 'ja', label: '日本語' },
   ],
 };
