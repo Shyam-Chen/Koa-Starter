@@ -10,7 +10,7 @@ export default {
   },
   render() {
     return (
-      <v-layout justify-center align-center class="vfs-notfound" style={{ background: this.$app.theme === 'light' ? '#fff' : '#000' }}>
+      <v-layout justify-center align-center class="vfs-notfound" style=\{{ background: this.$app.theme === 'light' ? '#fff' : '#000' }}>
         <div class="display-1 pa-3">404</div>
       </v-layout>
     );

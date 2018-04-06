@@ -6,7 +6,7 @@ jobs:
     docker:
       - image: circleci/node:8
 
-    working_directory: ~/Vue-FullStarter-Kit
+    working_directory: ~/{{ name }}
 
     steps:
       - checkout

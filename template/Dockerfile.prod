@@ -1,6 +1,6 @@
 FROM node:8
 
-ENV HOME /Vue-FullStarter-Kit
+ENV HOME /{{ name }}
 
 WORKDIR ${HOME}
 ADD . $HOME
