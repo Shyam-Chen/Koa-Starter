@@ -2,6 +2,16 @@
   <v-app :dark="$app.theme === 'dark'">
 
     <v-navigation-drawer :clipped="$vuetify.breakpoint.mdAndUp" v-model="$app.drawer" fixed app>
+      <v-toolbar class="hidden-md-and-up" flat>
+        <v-list>
+          <v-list-tile>
+            <v-list-tile-title class="title">
+              <router-link class="vfs-router-link" to="/">{{ name }}</router-link>
+            </v-list-tile-title>
+          </v-list-tile>
+        </v-list>
+      </v-toolbar>
+
       <v-list dense>
         <template v-for="item in $app.navigation">
 
@@ -11,7 +21,7 @@
           <v-list-group v-if="item.children" :key="item.text" :prepend-icon="item.icon" :disabled="item.disabled">
             <v-list-tile slot="activator">
               <v-list-tile-content>
-                <v-list-tile-title>\{{ item.text }}</v-list-tile-title>
+                <v-list-tile-title>\{{ $t(item.text) }}</v-list-tile-title>
               </v-list-tile-content>
             </v-list-tile>
 
@@ -21,7 +31,7 @@
               <v-list-group v-if="child.children" :key="child.text" :prepend-icon="child.icon" :disabled="child.disabled" sub-group>
                 <v-list-tile slot="activator">
                   <v-list-tile-content>
-                    <v-list-tile-title>\{{ child.text }}</v-list-tile-title>
+                    <v-list-tile-title>\{{ $t(child.text) }}</v-list-tile-title>
                   </v-list-tile-content>
                 </v-list-tile>
 
@@ -30,7 +40,7 @@
                     <v-icon>\{{ subchild.icon }}</v-icon>
                   </v-list-tile-action>
                   <v-list-tile-content>
-                    <v-list-tile-title>\{{ subchild.text }}</v-list-tile-title>
+                    <v-list-tile-title>\{{ $t(subchild.text) }}</v-list-tile-title>
                   </v-list-tile-content>
                 </v-list-tile>
               </v-list-group>
@@ -41,7 +51,7 @@
                   <v-icon>\{{ child.icon }}</v-icon>
                 </v-list-tile-action>
                 <v-list-tile-content>
-                  <v-list-tile-title>\{{ child.text }}</v-list-tile-title>
+                  <v-list-tile-title>\{{ $t(child.text) }}</v-list-tile-title>
                 </v-list-tile-content>
               </v-list-tile>
 
@@ -62,7 +72,7 @@
       </v-list>
     </v-navigation-drawer>
 
-    <v-toolbar :clipped-left="$vuetify.breakpoint.mdAndUp" color="blue darken-3" dark app fixed>
+    <v-toolbar :clipped-left="$vuetify.breakpoint.mdAndUp" class="primary" dark app fixed>
       <v-toolbar-title class="ml-0 pl-3 vfs-toolbar-title">
         <v-toolbar-side-icon @click.stop="$app.drawer = !$app.drawer"></v-toolbar-side-icon>
         <router-link class="hidden-sm-and-down white--text vfs-router-link" to="/">{{ name }}</router-link>
@@ -113,12 +123,12 @@
     </v-toolbar>
 
     <v-content>
-      <v-container fluid class="vfs-container">
+      <v-fade-transition mode="out-in">
         <router-view></router-view>
-      </v-container>
+      </v-fade-transition>
     </v-content>
 
-    <v-footer inset class="pa-3 blue darken-3 white--text">
+    <v-footer inset class="pa-3 primary white--text">
       <v-spacer></v-spacer>
       <div>Copyright &copy; \{{ new Date().getFullYear() }} {{ name }}</div>
     </v-footer>
@@ -129,34 +139,24 @@
 <script>
 // @flow
 
-import { IApp, IComponent } from './constants';
+import { mapActions } from 'vuex';  // eslint-disable-line
 
-export default ({
-  created() {
-    const languages: string[] = ['en', 'zh', 'ja'];
+import { IApp } from './types';
+import actions from './actions';
 
-    languages.forEach((lang: string): void => {
-      if ((navigator.language).includes(lang)) {
-        this.setLanguage(lang);
-      }
-    });
-  },
-  methods: {
-    setTheme(val): void {
-      this.$app.theme = val;
-      localStorage.setItem('theme', val);
-    },
-    setLanguage(val): void {
-      this.$i18n.locale = val;
-      document.documentElement.lang = val;  // eslint-disable-line
-    },
-  },
+export default {
   computed: {
     $app(): IApp {
       return this.$store.state;
     },
   },
-}: IComponent);
+  created() {
+    this.initialLanguage();
+  },
+  methods: {
+    ...mapActions(Object.keys(actions)),
+  },
+};
 </script>
 
 <style scoped>
@@ -166,9 +166,5 @@ export default ({
 
 .vfs-router-link {
   text-decoration: none;
-}
-
-.vfs-container {
-  height: 100%;
 }
 </style>

@@ -32,6 +32,4 @@ RUN \
 
 RUN yarn install
 
-ENV CI_ENV true
-
 EXPOSE 8000 5000

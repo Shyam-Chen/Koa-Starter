@@ -30,7 +30,7 @@ $ yarn start:app
 
 # back-end
 $ yarn start:api
-$ firebase serve --only functions
+$ yarn firebase serve --only functions
 ```
 
 3. Build the code
@@ -111,54 +111,50 @@ Change to your projects.
 // .firebaserc
 {
   "projects": {
-    "development": "vue-by-example-dev",
-    "production": "vue-by-example-prod"
+    "development": "{{ name }}",
+    "production": "{{ name }}"
   }
 }
 ```
 
 ### Default environments
 
-Set your local env variables.
+Set your local environment variables.
 
 ```js
 // env.js
 const NODE_ENV = exports.NODE_ENV = process.env.NODE_ENV || 'development';
 
+const PROJECT_NAME = exports.PROJECT_NAME = process.env.PROJECT_NAME || '{{ name }}';
+
 const SITE_PORT = exports.SITE_PORT = process.env.SITE_PORT || 8000;
 const SITE_URL = exports.SITE_URL = process.env.SITE_URL || `http://localhost:${SITE_PORT}`;
 
-const FUNC_PROJECT = exports.FUNC_PROJECT = process.env.FUNC_PROJECT || 'vue-by-example-dev';
-const FUNC_URL = exports.FUNC_URL = process.env.FUNC_URL || `http://localhost:5000/${FUNC_PROJECT}/us-central1`;
+const FUNC_PORT = exports.FUNC_PORT = process.env.FUNC_PORT || 5000;
+const FUNC_URL = exports.FUNC_URL = process.env.FUNC_URL || `http://localhost:${FUNC_PORT}/${PROJECT_NAME}/us-central1`;
 ```
 
 ### Deploy environments
 
-Create your `Docker.<dev|prod>` env image.
+Create your `Docker.<dev|prod>` env image and set the environment variables.
 
 ```dockerfile
 [...]
 # envs --
-ENV SITE_URL <SITE_URL>
+ENV SITE_URL https://{{ name }}.firebaseapp.com
 
-ENV FUNC_URL <FUNC_URL>
+ENV FUNC_URL https://us-central1-{{ name }}.cloudfunctions.net
 # -- envs
 [...]
 ```
 
-Don't add `Docker.<dev|prod>` in version control.
+For security, don't add `Docker.<dev|prod>` in version control.
 
 So you need to push private images to Docker Hub.
 
 ```bash
 $ docker login
-$ docker push DOCKER_ID_USER/IMAGE_NAME
-```
-
-After having a private image, you need to login to Docker Hub at `circle.yml`.
-
-```sh
-docker login -u ${DOCKER_USERNAME} -p ${DOCKER_TOKEN}
+$ docker push <DOCKER_ID_USER>/<IMAGE_NAME>
 ```
 
 And then pull your private image at `docker-compose.yml`.
@@ -169,12 +165,41 @@ And then pull your private image at `docker-compose.yml`.
 -   image: <dev|prod>
 -   build:
 -     context: .
--     dockerfile: Dockerfile.prod
+-     dockerfile: Dockerfile.<dev|prod>
 +   image: <PRIVATE_IMAGE>
     volumes:
       - yarn:/home/node/.cache/yarn
     tty: true
 [...]
+```
+
+After that, you need to login to Docker Hub at `circle.yml`.
+
+Don't forget to set CI's environment variables in CircleCI.
+
+```sh
+docker login -u ${DOCKER_USERNAME} -p ${DOCKER_TOKEN}
+```
+
+Change deployment configuration is completed.
+
+### VS Code settings
+
+```js
+{
+  "window.zoomLevel": 1,
+  "workbench.colorTheme": "Material Theme",
+  "workbench.iconTheme": "material-icon-theme",
+  "eslint.validate": [
+    "javascript", {
+      "language": "vue"
+    },
+    "javascriptreact",
+    "html"
+  ],
+  "javascript.validate.enable": false,
+  "vetur.validation.script": false
+}
 ```
 
 ## Directory Structure
@@ -184,15 +209,19 @@ And then pull your private image at `docker-compose.yml`.
 ├── flow-typed  -> module types
 ├── src
 │   ├── api
+│   │   ├── <FEATURE>
+│   │   └── index.js
 │   ├── app
 │   │   ├── config
 │   │   ├── <FEATURE>
-│   │   │   ├── actions.js
-│   │   │   ├── constants.js
-│   │   │   ├── <FEATURE>.vue
-│   │   │   ├── getters.js
-│   │   │   └── mutations.js
-│   │   └── shared
+│   │   ├── shared
+│   │   ├── actions.js
+│   │   ├── App.vue
+│   │   ├── constants.js
+│   │   ├── getters.js
+│   │   ├── mutations.js
+│   │   ├── translation.yml
+│   │   └──types.js
 │   ├── assets  -> datas, fonts, images, medias, styles
 │   ├── client.js
 │   ├── index.html

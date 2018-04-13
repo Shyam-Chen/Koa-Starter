@@ -16,15 +16,10 @@ $ yarn global add vue-cli
 $ vue init Shyam-Chen/Vue-Fullstack-Template <PROJECT_NAME>
 ```
 
-3. Go to project folder to start your journey
+3. Start your journey
 
 ```bash
 $ cd <PROJECT_NAME>
-```
-
-4. To get started
-
-```bash
 $ yarn install && yarn typed
 $ yarn start:app
 $ yarn start:api

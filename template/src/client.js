@@ -1,8 +1,7 @@
-import 'vuetify/dist/vuetify.min.css';
+import 'vuetify/dist/vuetify.css';
 import Vue from 'vue';
 import { sync } from 'vuex-router-sync';
 import Material from 'vuetify';
-import Meta from 'vue-meta';
 // import Raven from 'raven-js';
 // import RavenVue from 'raven-js/plugins/vue';
 
@@ -15,8 +14,17 @@ import i18n from './app/config/i18n';
 
 sync(store, router);
 
-Vue.use(Material);
-Vue.use(Meta);
+Vue.use(Material, {
+  theme: {
+    primary: '#1E88E5',  // blue, darken-1
+    secondary: '#42A5F5',  // blue, lighten-1
+    accent: '#E91E63',  // pink
+    error: '#F44336',  // red
+    warning: '#FFEB3B',  // yellow
+    info: '#2196F3',  // blue
+    success: '#4CAF50',  // green
+  },
+});
 
 // if (window.location.hostname !== 'localhost') {
 //   Raven.config('https://<key>@sentry.io/<project>')
@@ -29,9 +37,6 @@ const vm = new Vue({
   store,
   provide,
   i18n,
-  mounted() {
-    document.dispatchEvent(new Event('render-event'));
-  },
   render: handle => handle(App),
 });
 

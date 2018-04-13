@@ -8,7 +8,7 @@
     "build:app": "rimraf public && cross-env BABEL_ENV=app webpack --env.prod --progress",
     "build:api": "rimraf functions && cross-env BABEL_ENV=api gulp --prod",
     "lint:js": "eslint src/**/*.{js,vue}",
-    "lint:css": "stylelint src/**/*.{css,vue}",
+    "lint:css": "stylelint 'src/**/*.{css,vue}'",
     "test:app": "cross-env BABEL_ENV=app JEST_ENV=app jest \"src/app/.*\\.js$\" --coverage --forceExit",
     "test:api": "cross-env BABEL_ENV=api JEST_ENV=api jest \"src/api/.*\\.js$\" --coverage --forceExit",
     "e2e:app": "cross-env BABEL_ENV=app JEST_ENV=e2e jest \"src/app/.*\\.js$\" --forceExit",
@@ -47,7 +47,7 @@
     "vue-router": "3.0.1",
     "vuetify": "1.0.13",
     "vuex": "3.0.1",
-    "vuex-bound": "0.2.1",
+    "vuex-bound": "0.3.0",
     "vuex-router-sync": "5.0.0"
   },
   "devDependencies": {
@@ -102,7 +102,6 @@
     "postcss-import": "11.1.0",
     "postcss-loader": "2.1.3",
     "postcss-nested": "3.0.0",
-    "prerender-spa-plugin": "3.0.0",
     "process-envify": "0.1.1",
     "puppeteer": "1.2.0",
     "rimraf": "2.6.2",

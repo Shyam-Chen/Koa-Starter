@@ -7,12 +7,14 @@ export default {
   },
   render() {
     return (
-      <v-layout fill-height justify-center align-center>
-        <div class="text-xs-center">
-          <div class="display-1 pa-3 blue--text">{{ name }}</div>
-          <img src={logo} alt="Logo" width="300" height="300" />
-        </div>
-      </v-layout>
+      <v-container fluid fill-height>
+        <v-layout justify-center align-center>
+          <div class="text-xs-center">
+            <div class="display-1 pa-3 primary--text">{{ name }}</div>
+            <img src={logo} alt="Logo" width="300" height="300" />
+          </div>
+        </v-layout>
+      </v-container>
     );
   },
 };
