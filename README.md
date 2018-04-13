@@ -22,4 +22,12 @@ $ vue init Shyam-Chen/Vue-Fullstack-Template <PROJECT_NAME>
 $ cd <PROJECT_NAME>
 ```
 
-:vertical_traffic_light: Detailed features and usage please go to [Vue Fullstack Starter](https://github.com/Shyam-Chen/Vue-Fullstack-Starter).
+4. To get started
+
+```bash
+$ yarn install && yarn typed
+$ yarn start:app
+$ yarn start:api
+``` 
+
+:vertical_traffic_light: Detailed features and usage please go to [here](https://github.com/Shyam-Chen/Vue-Fullstack-Starter).
