@@ -14,7 +14,6 @@ const store = new Vuex.Store({
   actions,
   mutations,
   getters,
-  modules: {},
   plugins: [
     process.env.NODE_ENV === 'development' && createLogger({ collapsed: false }),
   ].filter(Boolean),

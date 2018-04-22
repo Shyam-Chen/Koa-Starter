@@ -1,21 +1,88 @@
-<script>
-import logo from '~assets/images/logo.svg';
+<template>
+  <div>
+    <v-jumbotron dark gradient="to bottom, #1E88E5, #42A5F5" height="auto">
+      <v-container fill-height>
+        <v-layout justify-center align-center wrap>
+          <img src="assets/images/logo.svg" alt="Logo" width="300" height="300" />
 
+          <v-flex shrink>
+            <h3 class="display-3">{{ name }}</h3>
+            <span class="subheading">{{ description }}</span>
+            <v-divider class="my-3"></v-divider>
+            <v-btn large color="white" to="/hello-world" class="primary--text ml-0">See more</v-btn>
+            <v-btn color="white" href="https://github.com/Shyam-Chen/Vue-Fullstack-Starter" large outline target="_blank">
+              <v-icon left>fa fa-github</v-icon>
+              GitHub
+            </v-btn>
+            <v-btn color="white" href="https://github.com/Shyam-Chen/Vue-Fullstack-Template" large outline target="_blank">
+              <v-icon left>fa fa-file-code-o</v-icon>
+              Template
+            </v-btn>
+          </v-flex>
+        </v-layout>
+      </v-container>
+    </v-jumbotron>
+
+    <v-container grid-list-xl class="mt-5 mb-5">
+      <v-layout row justify-center wrap>
+        <v-flex xs12 sm8 md4>
+          <div class="elevation-1" style="height: 256px;">
+
+          </div>
+        </v-flex>
+
+        <v-flex xs12 sm8 md4>
+          <div class="elevation-1" style="height: 256px;">
+
+          </div>
+        </v-flex>
+      </v-layout>
+    </v-container>
+
+    <v-container grid-list-xl class="mt-5 mb-5">
+      <v-layout row justify-center wrap>
+        <v-flex xs12 sm8 md4>
+          <div class="elevation-1" style="height: 256px;">
+
+          </div>
+        </v-flex>
+
+        <v-flex xs12 sm8 md4>
+          <div class="elevation-1" style="height: 256px;">
+
+          </div>
+        </v-flex>
+      </v-layout>
+    </v-container>
+
+    <v-container grid-list-xl class="mt-5 mb-5">
+      <v-layout row justify-center wrap>
+        <v-flex xs12 sm8 md4>
+          <div class="elevation-1" style="height: 256px;">
+
+          </div>
+        </v-flex>
+
+        <v-flex xs12 sm8 md4>
+          <div class="elevation-1" style="height: 256px;">
+
+          </div>
+        </v-flex>
+      </v-layout>
+    </v-container>
+
+    <v-container grid-list-xl class="mt-5 mb-5">
+      <v-layout row justify-center>
+        <v-btn large color="primary" to="/hello-world">See more</v-btn>
+      </v-layout>
+    </v-container>
+  </div>
+</template>
+
+<script>
 export default {
   metaInfo: {
     title: '{{ name }}',
-  },
-  render() {
-    return (
-      <v-container fluid fill-height>
-        <v-layout justify-center align-center>
-          <div class="text-xs-center">
-            <div class="display-1 pa-3 primary--text">{{ name }}</div>
-            <img src={logo} alt="Logo" width="300" height="300" />
-          </div>
-        </v-layout>
-      </v-container>
-    );
   },
 };
 </script>

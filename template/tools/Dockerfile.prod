@@ -10,9 +10,10 @@ RUN yarn install
 ENV NODE_ENV production
 
 # envs --
-ENV SITE_URL https://{{ name }}.firebaseapp.com
+ENV SITE_URL <SITE_URL>
+ENV FUNC_URL <FUNC_URL>
 
-ENV FUNC_URL https://us-central1-{{ name }}.cloudfunctions.net
+ENV SENTRY_DSN <SENTRY_DSN>
 # -- envs
 
 RUN yarn build:app

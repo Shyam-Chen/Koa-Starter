@@ -30,12 +30,16 @@ gulp.task('build', () =>
 );
 
 gulp.task('copy', () =>
-  gulp.src(['./package.json', './yarn.lock'])
+  gulp
+    .src([
+      'package.json',
+      'yarn.lock',
+    ])
     .pipe(gulp.dest(DIST_ROOT)),
 );
 
 gulp.task('rename', () =>
-  gulp.src('./functions/server.js')
+  gulp.src('functions/server.js')
     .pipe(rimraf())
     .pipe(rename('index.js'))
     .pipe(gulp.dest(DIST_ROOT)),
@@ -49,10 +53,6 @@ gulp.task('watch', () => {
     'src/api/**/*',
     '!src/api/**/__tests__/**/*',
   ], ['rebuild']);
-});
-
-gulp.task('serve', () => {
-  // TODO: firebase serve
 });
 
 gulp.task('default', (done) => {
