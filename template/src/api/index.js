@@ -1,6 +1,8 @@
+// @flow
+
 import express from 'express';
 
-import helloWorld from './hello-world';
+import helloWorld from '~/hello-world';
 
 const router = express.Router();
 

@@ -1,7 +1,7 @@
 <template>
   <v-container fluid>
     <v-layout>
-      <div class="title">Hello, World!</div>
+      <div class="title">\{{ message }}</div>
     </v-layout>
   </v-container>
 </template>
@@ -10,6 +10,14 @@
 export default {
   metaInfo: {
     title: 'Hello World | {{ name }}',
+    meta: [
+      { property: 'og:title', content: 'Hello World | {{ name }}' },
+    ],
+  },
+  data() {
+    return {
+      message: 'Hello, World!',
+    };
   },
 };
 </script>

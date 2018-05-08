@@ -8,6 +8,7 @@ const RobotstxtPlugin = require('robotstxt-webpack-plugin').default;
 const SitemapPlugin = require('sitemap-webpack-plugin').default;
 const envify = require('process-envify');
 const uglify = require('uglify-es');
+const { VueLoaderPlugin } = require('vue-loader');
 
 const env = require('./env');
 const pkg = require('./package');
@@ -51,7 +52,7 @@ module.exports = ({ prod = false } = {}) => ({
         use: [
           'style-loader',
           { loader: 'css-loader', options: { importLoaders: 1 } },
-          'postcss-loader',
+          { loader: 'postcss-loader', options: { sourceMap: true } },
         ],
       },
       {
@@ -115,6 +116,7 @@ module.exports = ({ prod = false } = {}) => ({
       },
     ]),
     new webpack.DefinePlugin(envify(env)),
+    new VueLoaderPlugin(),
     !prod && new webpack.HotModuleReplacementPlugin(),
     prod && new SWPrecachePlugin({
       cacheId: pkg.name,
@@ -130,10 +132,15 @@ module.exports = ({ prod = false } = {}) => ({
   optimization: {
     splitChunks: {
       cacheGroups: {
-        vendor: {
-          test: /node_modules/,
-          name: 'vendor',
+        common: {
+          name: 'common',
           chunks: 'initial',
+          minChunks: 2,
+        },
+        vendor: {
+          test: /[\\/]node_modules[\\/]/,
+          name: 'vendor',
+          chunks: 'all',
         },
       },
     },
@@ -144,6 +151,7 @@ module.exports = ({ prod = false } = {}) => ({
   devServer: {
     contentBase: DIST_ROOT,
     historyApiFallback: true,
+    host: env.HOST_NAME,
     hot: true,
     inline: true,
     port: env.SITE_PORT,

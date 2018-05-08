@@ -2,6 +2,8 @@ import 'vuetify/dist/vuetify.css';
 import Vue from 'vue';
 import { sync } from 'vuex-router-sync';
 import Material from 'vuetify';
+// import * as firebase from 'firebase/app';
+// import 'firebase/auth';
 import Raven from 'raven-js';
 import RavenVue from 'raven-js/plugins/vue';
 
@@ -19,12 +21,10 @@ Vue.use(Material, {
     primary: '#1E88E5',  // blue, darken-1
     secondary: '#42A5F5',  // blue, lighten-1
     accent: '#E91E63',  // pink
-    error: '#F44336',  // red
-    warning: '#FFEB3B',  // yellow
-    info: '#2196F3',  // blue
-    success: '#4CAF50',  // green
   },
 });
+
+// firebase.initializeApp(process.env.FIREBASE_CONFIG);
 
 if (process.env.NODE_ENV === 'production') {
   Raven.config(process.env.SENTRY_DSN)

@@ -7,7 +7,7 @@
           <v-toolbar class="hidden-md-and-up" flat>
             <v-toolbar-title class="ml-0 pl-3 vfs-toolbar-title">
               <router-link class="vfs-router-link" to="/">
-                <img src="/assets/images/icon-32x32.png" alt="Logo">
+                <img src="/assets/images/logo.svg" alt="Logo" width="40" height="40">
                 <span>{{ name }}</span>
               </router-link>
             </v-toolbar-title>
@@ -73,11 +73,11 @@
           </v-list>
         </v-navigation-drawer>
 
-        <v-toolbar :clipped-left="$vuetify.breakpoint.mdAndUp" :flat="$route.meta.home" class="primary" dark app fixed>
+        <v-toolbar :clipped-left="$vuetify.breakpoint.mdAndUp" :flat="$route.meta.home" class="primary darken-1" dark app fixed>
           <v-toolbar-title class="ml-0 pl-3 vfs-toolbar-title">
             <v-toolbar-side-icon v-if="!$route.meta.home" @click.stop="$app.drawer = !$app.drawer"></v-toolbar-side-icon>
             <router-link class="hidden-sm-and-down white--text vfs-router-link" to="/">
-              <img src="/assets/images/icon-32x32.png" alt="Logo">
+              <img src="/assets/images/logo.svg" alt="Logo" width="40" height="40">
               <span>{{ name }}</span>
             </router-link>
           </v-toolbar-title>
@@ -116,12 +116,23 @@
           <v-fade-transition mode="out-in">
             <router-view></router-view>
           </v-fade-transition>
-        </v-content>
 
-        <v-footer inset class="pa-3 primary white--text">
-          <v-spacer></v-spacer>
-          <div>Copyright &copy; \{{ new Date().getFullYear() }} {{ name }}</div>
-        </v-footer>
+          <v-footer height="auto" class="pa-3 primary darken-1 white--text">
+            <img src="/assets/images/logo.svg" alt="Logo" width="50" height="50">
+
+            <v-layout fill-height row wrap justify-space-between align-center class="ml-3 mr-3">
+              <div>
+                <a href="https://vuejs.org/" class="subheading pa-2 white--text" style="text-decoration: none;">Learn Vue</a>
+              </div>
+              <div>Current Version: 1.0.0</div>
+              <div class="caption text-xs-center">
+                Powered by {{ name }} &copy;\{{ new Date().getFullYear() }}. <br>
+                Code licensed under an MIT-style License. <br>
+                Documentation licensed under CC BY 4.0.
+              </div>
+            </v-layout>
+          </v-footer>
+        </v-content>
       </template>
 
       <template v-else>

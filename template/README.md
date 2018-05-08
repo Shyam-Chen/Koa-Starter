@@ -100,32 +100,64 @@ $ docker-compose rm -fs
 $ docker-compose up -d --build <SERVICE>
 ```
 
+5. Push images to Docker Cloud
+
+```bash
+$ docker login
+$ docker build -f tools/Dockerfile.<dev|prod> -t <IMAGE_NAME>:<IMAGE_TAG> .
+
+# checkout
+$ docker images
+
+$ docker tag <IMAGE_NAME>:<IMAGE_TAG> <DOCKER_ID_USER>/<IMAGE_NAME>:<IMAGE_TAG>
+$ docker push <DOCKER_ID_USER>/<IMAGE_NAME>:<IMAGE_TAG>
+
+# remove
+$ docker rmi <IMAGE_ID>
+```
+
+6. Pull images from Docker Cloud
+
+```diff
+# docker-compose.yml
+
+  <dev|prod>:
+-   image: <dev|prod>
+-   build:
+-     context: .
+-     dockerfile: tools/Dockerfile.<dev|prod>
++   image: <DOCKER_ID_USER>/<IMAGE_NAME>:<IMAGE_TAG>
+    volumes:
+      - yarn:/home/node/.cache/yarn
+    tty: true
+```
+
 ## Configuration
 
 ### Project environments
 
-Change to your projects.
+Change to your project.
 
 ```js
 // .firebaserc
 {
   "projects": {
-    "development": "{{ name }}",
-    "production": "{{ name }}"
+    "development": "<PROJECT_NAME>",
+    "production": "<PROJECT_NAME>"
   }
 }
 ```
 
 ### Default environments
 
-Set your local environment variables.
+Set your local environment variables. (use `this.<ENV_NAME> = process.env.<ENV_NAME> || <LOCAL_ENV>;`)
 
 ```js
 // env.js
 function Environments() {
   this.NODE_ENV = process.env.NODE_ENV || 'development';
 
-  this.PROJECT_NAME = process.env.PROJECT_NAME || '{{ name }}';
+  this.PROJECT_NAME = process.env.PROJECT_NAME || '<PROJECT_NAME>';
 
   this.SITE_PORT = process.env.SITE_PORT || 8000;
   this.SITE_URL = process.env.SITE_URL || `http://localhost:${this.SITE_PORT}`;
@@ -133,15 +165,25 @@ function Environments() {
   this.FUNC_PORT = process.env.FUNC_PORT || 5000;
   this.FUNC_URL = process.env.FUNC_URL || `http://localhost:${this.FUNC_PORT}/${this.PROJECT_NAME}/us-central1`;
 
+  this.FIREBASE_CONFIG = process.env.FIREBASE_CONFIG || {
+    apiKey: '<API_KEY>',
+    authDomain: '<AUTH_DOMAIN>',
+    databaseURL: '<DATABASE_URL>',
+    projectId: '<PROJECT_ID>',
+    storageBucket: '<STORAGE_BUCKET>',
+    messagingSenderId: '<MESSAGING_SENDER_ID>',
+  };
+
   this.GOOGLE_ANALYTICS = process.env.GOOGLE_ANALYTICS || '<GOOGLE_ANALYTICS>';
 
   this.SENTRY_DSN = process.env.SENTRY_DSN || null;
+  this.RENDERTRON_URL = process.env.RENDERTRON_URL || null;
 }
 ```
 
-### Deploy environments
+### Deployment environment
 
-Set your deploy environment variables.
+Set your deployment environment variables.
 
 ```dockerfile
 # tools/Dockerfile.<dev|prod>
@@ -154,9 +196,9 @@ ENV SENTRY_DSN <SENTRY_DSN>
 # -- envs
 ```
 
-### Enable SEO
+### SEO friendly
 
-Enable Billing on your Firebase and Google Cloud Platform the project by switching to the Blaze plan.
+Enable billing on your Firebase Platform and Google Cloud the project by switching to the Blaze plan.
 
 Serve dynamic content for bots.
 
@@ -177,7 +219,17 @@ Deploy rendertron instance to Google App Engine.
 $ git clone https://github.com/GoogleChrome/rendertron
 $ cd rendertron
 $ gcloud auth login
-$ gcloud app deploy app.yaml --project <PROJECT_NAME>
+$ gcloud app deploy app.yaml --project <RENDERTRON_NAME>
+```
+
+Set your rendertron instance in deployment environment.
+
+```dockerfile
+# tools/Dockerfile.<dev|prod>
+
+# envs --
+ENV RENDERTRON_URL <RENDERTRON_URL>
+# -- envs
 ```
 
 ### VS Code settings
@@ -201,17 +253,23 @@ $ gcloud app deploy app.yaml --project <PROJECT_NAME>
 
 ## Directory Structure
 
-```js
+```coffee
 .
 ├── src
 │   ├── api
+│   │   ├── config  -> config middlewares
+│   │   ├── graphql
+│   │   │   └── <FEATURE>
+│   │   │       ├── __tests__
+│   │   │       │   └── ...
+│   │   │       └── ...
 │   │   ├── <FEATURE>
 │   │   │   ├── __tests__
 │   │   │   │   └── ...
 │   │   │   └── ...
 │   │   └── index.js
 │   ├── app
-│   │   ├── _languages
+│   │   ├── _languages  -> app languages
 │   │   │   └── ...
 │   │   ├── config  -> config plugins
 │   │   │   └── ...
@@ -222,7 +280,7 @@ $ gcloud app deploy app.yaml --project <PROJECT_NAME>
 │   │   │   │   ├── <FEATURE>.spec.js
 │   │   │   │   ├── getters.spec.js
 │   │   │   │   └── mutations.spec.js
-│   │   │   ├── _languages
+│   │   │   ├── _languages  -> <FEATURE> languages
 │   │   │   │   └── ...
 │   │   │   ├── actions.js
 │   │   │   ├── constants.js
@@ -230,14 +288,12 @@ $ gcloud app deploy app.yaml --project <PROJECT_NAME>
 │   │   │   ├── getters.js
 │   │   │   ├── mutations.js
 │   │   │   └── types.js
-│   │   ├── shared  -> shared components
-│   │   │   └── ...
 │   │   ├── actions.js  -> root actions
-│   │   ├── App.vue
-│   │   ├── constants.js
+│   │   ├── App.vue  -> app root
+│   │   ├── constants.js  -> root constants
 │   │   ├── getters.js  -> root getters
 │   │   ├── mutations.js  -> root mutations
-│   │   └── types.js
+│   │   └── types.js  -> root types
 │   ├── assets  -> datas, fonts, images, medias, styles
 │   ├── client.js
 │   ├── index.html
