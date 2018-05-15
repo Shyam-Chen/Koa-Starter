@@ -7,14 +7,14 @@
 
           <v-flex shrink class="text-xs-center text-md-left">
             <div class="display-3">{{ name }}</div>
-            <div class="subheading">{{ description }}</div>
+            <div class="subheading">Web Fundamentals • Firebase Platform • Google Cloud</div>
             <v-divider class="my-3"></v-divider>
             <v-btn large color="white" to="/hello-world" class="primary--text ml-0">Hello World</v-btn>
-            <v-btn color="white" href="https://github.com/Shyam-Chen/Vue-Fullstack-Starter" large outline target="_blank">
+            <v-btn color="white" href="https://github.com/Shyam-Chen/Vue-Fullstack-Starter" large outline target="_blank" rel="noopener">
               <v-icon left>fa fa-github</v-icon>
               GitHub
             </v-btn>
-            <v-btn color="white" href="https://github.com/Shyam-Chen/Vue-Fullstack-Template" large outline target="_blank">
+            <v-btn color="white" href="https://github.com/Shyam-Chen/Vue-Fullstack-Template" large outline target="_blank" rel="noopener">
               <v-icon left>fa fa-file-code-o</v-icon>
               Template
             </v-btn>
@@ -385,15 +385,13 @@
 </template>
 
 <script>
+import { layout } from '~/shared/mixins';
+
 export default {
   metaInfo: {
     title: '{{ name }}',
   },
-  data() {
-    return {
-      isMobile: window.innerWidth < 600,
-    };
-  },
+  mixins: [layout],
 };
 </script>
 

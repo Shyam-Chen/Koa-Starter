@@ -7,7 +7,7 @@
           <v-toolbar class="hidden-md-and-up" flat>
             <v-toolbar-title class="ml-0 pl-3 vfs-toolbar-title">
               <router-link class="vfs-router-link" to="/">
-                <img src="/assets/images/logo.svg" alt="Logo" width="40" height="40">
+                <img src="/assets/images/logo.svg" alt="Logo" width="40" height="40" class="vfs-toolbar-image">
                 <span>{{ name }}</span>
               </router-link>
             </v-toolbar-title>
@@ -77,7 +77,7 @@
           <v-toolbar-title class="ml-0 pl-3 vfs-toolbar-title">
             <v-toolbar-side-icon v-if="!$route.meta.home" @click.stop="$app.drawer = !$app.drawer"></v-toolbar-side-icon>
             <router-link class="hidden-sm-and-down white--text vfs-router-link" to="/">
-              <img src="/assets/images/logo.svg" alt="Logo" width="40" height="40">
+              <img src="/assets/images/logo.svg" alt="Logo" width="40" height="40" class="vfs-toolbar-image">
               <span>{{ name }}</span>
             </router-link>
           </v-toolbar-title>
@@ -87,25 +87,30 @@
           <v-spacer></v-spacer>
 
           <v-menu bottom left>
-            <v-btn slot="activator" icon dark>
+            <v-btn slot="activator" aria-label="Theme" icon>
               <v-icon>format_color_fill</v-icon>
             </v-btn>
             <v-list>
               <v-list-tile @click="setTheme('light')">
-                <v-list-tile-title>Light</v-list-tile-title>
+                <v-list-tile-avatar class="vfs-list-tile-avatar">☀️</v-list-tile-avatar>
+                <v-list-tile-title>Light Theme</v-list-tile-title>
               </v-list-tile>
               <v-list-tile @click="setTheme('dark')">
-                <v-list-tile-title>Dark</v-list-tile-title>
+                <v-list-tile-avatar class="vfs-list-tile-avatar">🌙</v-list-tile-avatar>
+                <v-list-tile-title>Dark Theme</v-list-tile-title>
               </v-list-tile>
             </v-list>
           </v-menu>
 
           <v-menu bottom left>
-            <v-btn slot="activator" icon dark>
+            <v-btn slot="activator" aria-label="Language" icon>
               <v-icon>language</v-icon>
             </v-btn>
             <v-list>
               <v-list-tile v-for="lang in $app.languages" :key="lang.key" @click="setLanguage(lang.key)">
+                <v-list-tile-avatar>
+                  <img :src="`https://countryflags.io/${lang.country}/flat/24.png`" alt="Country Flag">
+                </v-list-tile-avatar>
                 <v-list-tile-title>\{{ lang.label }}</v-list-tile-title>
               </v-list-tile>
             </v-list>
@@ -120,11 +125,11 @@
           <v-footer height="auto" class="pa-3 primary darken-1 white--text">
             <img src="/assets/images/logo.svg" alt="Logo" width="50" height="50">
 
-            <v-layout fill-height row wrap justify-space-between align-center class="ml-3 mr-3">
-              <div>
-                <a href="https://vuejs.org/" class="subheading pa-2 white--text" style="text-decoration: none;">Learn Vue</a>
+            <v-layout :column="isMobile" fill-height justify-space-between align-center class="ml-3 mr-3">
+              <div class="subheading">
+                <a href="https://vuejs.org/" class="subheading pa-2 white--text vfs-router-link">Learn Vue</a>
               </div>
-              <div>Current Version: 1.0.0</div>
+              <div class="caption">Current Version: 2.5.16</div>
               <div class="caption text-xs-center">
                 Powered by {{ name }} &copy;\{{ new Date().getFullYear() }}. <br>
                 Code licensed under an MIT-style License. <br>
@@ -148,10 +153,13 @@
 
 import { mapActions } from 'vuex';
 
+import { layout } from '~/shared/mixins';
+
 import { IApp } from './types';
 import actions from './actions';
 
 export default {
+  mixins: [layout],
   computed: {
     $app(): IApp {
       return this.$store.state;
@@ -169,13 +177,17 @@ export default {
 <style scoped>
 .vfs-toolbar-title {
   width: 300px;
-
-  & img {
-    vertical-align: middle;
-  }
 }
 
 .vfs-router-link {
   text-decoration: none;
+}
+
+.vfs-toolbar-image {
+  vertical-align: middle;
+}
+
+.vfs-list-tile-avatar {
+  font-size: 2rem;
 }
 </style>

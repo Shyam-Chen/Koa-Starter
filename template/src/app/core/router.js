@@ -11,6 +11,7 @@ Vue.use(Meta);
 
 const router = new Router({
   mode: 'history',
+  base: process.env.APP_BASE,
   routes: [
     { path: '/', component: Home, meta: { home: true } },
     { path: '/hello-world', component: () => import('~/hello-world/HelloWorld') },

@@ -1,6 +1,6 @@
 # Vue Fullstack Template
 
-:paw_prints: Project template for [Vue Fullstack Starter](https://github.com/Shyam-Chen/Vue-Fullstack-Starter) and generates a blank project via [Vue CLI](https://github.com/vuejs/vue-cli).
+:paw_prints: Project template for [Vue Fullstack Starter](https://github.com/Shyam-Chen/Vue-Fullstack-Starter) and generates a blank **Full-stack** project via [Vue CLI](https://github.com/vuejs/vue-cli).
 
 ## Usage
 
@@ -23,6 +23,6 @@ $ cd <PROJECT_NAME>
 $ yarn install && yarn typed
 $ yarn start:app
 $ yarn start:api
-``` 
+```
 
 :vertical_traffic_light: Detailed features and usage please go to [here](https://github.com/Shyam-Chen/Vue-Fullstack-Starter).

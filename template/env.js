@@ -1,7 +1,7 @@
 function Environments() {
   this.NODE_ENV = process.env.NODE_ENV || 'development';
 
-  this.PROJECT_NAME = process.env.PROJECT_NAME || '<PROJECT_NAME>';
+  this.PROJECT_NAME = process.env.PROJECT_NAME || '{{ name }}';
 
   this.HOST_NAME = process.env.HOST_NAME || 'localhost';
 
@@ -10,6 +10,8 @@ function Environments() {
 
   this.FUNC_PORT = process.env.FUNC_PORT || 5000;
   this.FUNC_URL = process.env.FUNC_URL || `http://${this.HOST_NAME}:${this.FUNC_PORT}/${this.PROJECT_NAME}/us-central1`;
+
+  this.APP_BASE = process.env.APP_BASE || '/';
 
   this.FIREBASE_CONFIG = process.env.FIREBASE_CONFIG || {
     apiKey: '<API_KEY>',

@@ -2,13 +2,14 @@ const fs = require('fs');
 const path = require('path');
 const webpack = require('webpack');
 const HtmlPlugin = require('html-webpack-plugin');
+const ScriptExtHtmlPlugin = require('script-ext-html-webpack-plugin');
+const { VueLoaderPlugin } = require('vue-loader');
 const CopyPlugin = require('copy-webpack-plugin');
 const SWPrecachePlugin = require('sw-precache-webpack-plugin');
 const RobotstxtPlugin = require('robotstxt-webpack-plugin').default;
 const SitemapPlugin = require('sitemap-webpack-plugin').default;
 const envify = require('process-envify');
 const uglify = require('uglify-es');
-const { VueLoaderPlugin } = require('vue-loader');
 
 const env = require('./env');
 const pkg = require('./package');
@@ -95,9 +96,7 @@ module.exports = ({ prod = false } = {}) => ({
   },
   plugins: [
     new HtmlPlugin({
-      filename: 'index.html',
       template: 'index.html',
-      inject: true,
       minify: prod && {
         removeComments: true,
         collapseWhitespace: true,
@@ -105,9 +104,21 @@ module.exports = ({ prod = false } = {}) => ({
       },
       chunksSortMode: prod ? 'dependency' : 'auto',
       serviceWorkerLoader: prod
-        ? `<script>${uglify.minify(fs.readFileSync(path.join(__dirname, './tools/service-worker.prod.js'), 'utf-8')).code}</script>`
-        : `<script>${fs.readFileSync(path.join(__dirname, './tools/service-worker.dev.js'), 'utf-8')}</script>`,
+        ? `<script defer>${uglify.minify(fs.readFileSync(path.join(__dirname, './tools/service-worker.prod.js'), 'utf-8')).code}</script>`
+        : `<script defer>${fs.readFileSync(path.join(__dirname, './tools/service-worker.dev.js'), 'utf-8')}</script>`,
     }),
+    new ScriptExtHtmlPlugin({
+      defaultAttribute: 'defer',
+      preload: {
+        test: /\.js$/,
+        chunks: 'initial',
+      },
+      prefetch: {
+        test: /\.js$/,
+        chunks: 'all',
+      },
+    }),
+    new VueLoaderPlugin(),
     new CopyPlugin([
       {
         from: 'assets/**/*',
@@ -116,7 +127,6 @@ module.exports = ({ prod = false } = {}) => ({
       },
     ]),
     new webpack.DefinePlugin(envify(env)),
-    new VueLoaderPlugin(),
     !prod && new webpack.HotModuleReplacementPlugin(),
     prod && new SWPrecachePlugin({
       cacheId: pkg.name,
