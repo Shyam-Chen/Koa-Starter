@@ -1,6 +1,6 @@
 {
-  "name": "Oh My Vue",
-  "short_name": "Oh My Vue",
+  "name": "{{ name }}",
+  "short_name": "{{ name }}",
   "start_url": "/",
   "theme_color": "#2F3BA2",
   "background_color": "#3E4EB8",

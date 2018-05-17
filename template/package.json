@@ -7,8 +7,8 @@
     "start:api": "rimraf functions && cross-env BABEL_ENV=api gulp",
     "build:app": "rimraf public && cross-env BABEL_ENV=app webpack --env.prod",
     "build:api": "rimraf functions && cross-env BABEL_ENV=api gulp --prod",
-    "lint:js": "eslint src/**/*.{js,vue}",
-    "lint:css": "stylelint 'src/**/*.{css,vue}'",
+    "lint:app": "eslint src/client.js 'src/app/**/*.{js,vue}' && stylelint 'src/**/*.{css,vue}'",
+    "lint:api": "eslint src/server.js 'src/api/**/*.js'",
     "test:app": "cross-env BABEL_ENV=test JEST_ENV=app jest \"src/app/.*\\.js$\" --coverage --forceExit",
     "test:api": "cross-env BABEL_ENV=api JEST_ENV=api jest \"src/api/.*\\.js$\" --coverage --forceExit",
     "e2e:app": "cross-env BABEL_ENV=app JEST_ENV=e2e jest \"src/app/.*\\.js$\" --forceExit",
@@ -57,13 +57,12 @@
     "vuex-router-sync": "5.0.0"
   },
   "devDependencies": {
-    "@kazupon/vue-i18n-loader": "0.3.0",
     "@vue/test-utils": "1.0.0-beta.15",
     "babel-core": "6.26.3",
     "babel-eslint": "8.2.3",
     "babel-jest": "22.4.3",
     "babel-loader": "7.1.4",
-    "babel-plugin-dynamic-import-node": "^1.2.0",
+    "babel-plugin-dynamic-import-node": "1.2.0",
     "babel-plugin-root-import": "5.1.0",
     "babel-plugin-transform-runtime": "6.23.0",
     "babel-preset-env": "1.6.1",
@@ -95,8 +94,8 @@
     "gulp-util": "3.0.8",
     "html-webpack-plugin": "3.2.0",
     "jest": "22.4.3",
+    "jest-localstorage-mock": "2.2.0",
     "jest-serializer-vue": "1.0.0",
-    "json5-loader": "1.0.1",
     "postcss-cssnext": "3.1.0",
     "postcss-import": "11.1.0",
     "postcss-loader": "2.1.4",
@@ -121,8 +120,6 @@
     "vue-template-compiler": "2.5.16",
     "webpack": "4.8.1",
     "webpack-cli": "2.1.3",
-    "webpack-dev-server": "3.1.4",
-    "yaml-jest": "1.0.5",
-    "yaml-loader": "0.5.0"
+    "webpack-dev-server": "3.1.4"
   }
 }
