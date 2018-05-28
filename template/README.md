@@ -13,7 +13,7 @@
 
 Follow steps to execute this boilerplate.
 
-1. Install Dependencies
+1. Install dependencies
 
 ```bash
 $ yarn install
@@ -22,7 +22,13 @@ $ yarn install
 $ yarn typed
 ```
 
-2. Run the code
+2. Set an active project for working direct
+
+```bash
+$ yarn firebase use development
+```
+
+3. Start a local server
 
 ```bash
 # front-end
@@ -32,7 +38,7 @@ $ yarn start:app
 $ yarn start:api
 ```
 
-3. Build the code
+4. Compile and bundle code
 
 ```bash
 # front-end
@@ -42,7 +48,7 @@ $ yarn build:app
 $ yarn build:api
 ```
 
-4. Check the code
+5. Check the code quality
 
 ```bash
 # front-end
@@ -52,7 +58,7 @@ $ yarn lint:app
 $ yarn lint:api
 ```
 
-5. Run the test
+6. Run the unit tests
 
 ```bash
 # front-end
@@ -62,15 +68,17 @@ $ yarn test:app
 $ yarn test:api
 ```
 
-6. Run the e2e
+7. Run the end-to-end tests
 
 ```bash
-# ui
+# front-end
 $ yarn e2e:app
 
-# http
+# back-end
 $ yarn e2e:api
 ```
+
+This project is separated from the front-end and back-end. If you are looking for **Isomorphic JavaScript** you can go [here](https://github.com/Shyam-Chen/Universal-Vue-Starter).
 
 ## Dockerization
 
@@ -102,6 +110,20 @@ $ docker-compose up -d --build <SERVICE>
 
 5. Push images to Docker Cloud
 
+```diff
+# .gitignore
+
+  .DS_Store
+  node_modules
+  npm
+  public
+  functions
+  coverage
++ Dockerfile.dev
++ Dockerfile.prod
+  *.log
+```
+
 ```bash
 $ docker login
 $ docker build -f tools/Dockerfile.<dev|prod> -t <IMAGE_NAME>:<IMAGE_TAG> .
@@ -113,6 +135,8 @@ $ docker tag <IMAGE_NAME>:<IMAGE_TAG> <DOCKER_ID_USER>/<IMAGE_NAME>:<IMAGE_TAG>
 $ docker push <DOCKER_ID_USER>/<IMAGE_NAME>:<IMAGE_TAG>
 
 # remove
+$ docker rmi <REPOSITORY>:<TAG>
+# or
 $ docker rmi <IMAGE_ID>
 ```
 
@@ -167,13 +191,15 @@ function Environments() {
   this.FUNC_PORT = process.env.FUNC_PORT || 5000;
   this.FUNC_URL = process.env.FUNC_URL || `http://${this.HOST_NAME}:${this.FUNC_PORT}/${this.PROJECT_NAME}/us-central1`;
 
+  this.APP_BASE = process.env.APP_BASE || '/';
+
   this.FIREBASE_CONFIG = process.env.FIREBASE_CONFIG || {
-    apiKey: '<API_KEY>',
-    authDomain: '<AUTH_DOMAIN>',
-    databaseURL: '<DATABASE_URL>',
-    projectId: '<PROJECT_ID>',
-    storageBucket: '<STORAGE_BUCKET>',
-    messagingSenderId: '<MESSAGING_SENDER_ID>',
+    apiKey: process.env.FIREBASE_API_KEY || '<API_KEY>',
+    authDomain: process.env.FIREBASE_AUTH_DOMAIN || '<FIREBASE_AUTH_DOMAIN>',
+    databaseURL: process.env.FIREBASE_DATABASE_URL || '<FIREBASE_DATABASE_URL>',
+    projectId: process.env.FIREBASE_PROJECT_ID || '<FIREBASE_PROJECT_ID>',
+    storageBucket: process.env.FIREBASE_STORAGE_BUCKET || '<FIREBASE_STORAGE_BUCKET>',
+    messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID || '<FIREBASE_MESSAGING_SENDER_ID>',
   };
 
   this.GOOGLE_ANALYTICS = process.env.GOOGLE_ANALYTICS || '<GOOGLE_ANALYTICS>';
@@ -196,6 +222,17 @@ ENV FUNC_URL <FUNC_URL>
 
 ENV SENTRY_DSN <SENTRY_DSN>
 # -- envs
+```
+
+### CI environment
+
+Add environment variables to the CircleCI build.
+
+```yml
+CODECOV_TOKEN
+DOCKER_PASSWORD
+DOCKER_USERNAME
+FIREBASE_TOKEN
 ```
 
 ### SEO friendly
@@ -330,6 +367,7 @@ The structure follows the LIFT Guidelines.
 ├── .postcssrc
 ├── .stylelintrc
 ├── Dockerfile
+├── LICENSE
 ├── README.md
 ├── circle.yml
 ├── docker-compose.yml

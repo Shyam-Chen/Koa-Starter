@@ -1,10 +1,10 @@
 // @flow
 
-import express from 'express';
+import { Router } from 'express';
 
 import helloWorld from '~/hello-world';
 
-const router = express.Router();
+const router: Router = Router();
 
 router.use('/hello-world', helloWorld);
 
