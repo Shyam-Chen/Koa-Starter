@@ -7,6 +7,12 @@
 </template>
 
 <script>
+// @flow
+
+type Data = {
+  message: string,
+};
+
 export default {
   metaInfo: {
     title: 'Hello World | {{ name }}',
@@ -14,7 +20,7 @@ export default {
       { property: 'og:title', content: 'Hello World | {{ name }}' },
     ],
   },
-  data() {
+  data(): Data {
     return {
       message: 'Hello, World!',
     };

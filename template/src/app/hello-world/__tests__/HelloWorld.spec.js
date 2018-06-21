@@ -2,7 +2,7 @@ import { shallowMount } from '@vue/test-utils';
 
 import HelloWorld from '../HelloWorld';
 
-describe('Hello World', () => {
+describe('HelloWorld', () => {
   let [wrapper] = [];
 
   beforeEach(() => {

@@ -78,8 +78,6 @@ $ yarn e2e:app
 $ yarn e2e:api
 ```
 
-This project is separated from the front-end and back-end. If you are looking for **Isomorphic JavaScript** you can go [here](https://github.com/Shyam-Chen/Universal-Vue-Starter).
-
 ## Dockerization
 
 Dockerize an application.

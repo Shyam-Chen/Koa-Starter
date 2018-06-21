@@ -11,6 +11,8 @@
 </template>
 
 <script>
+// @flow
+
 export default {
   metaInfo: {
     title: 'Page Not Found | {{ name }}',

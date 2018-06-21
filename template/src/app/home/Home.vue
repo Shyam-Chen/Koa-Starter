@@ -7,7 +7,9 @@
 
           <v-flex shrink class="text-xs-center text-md-left">
             <div class="display-3">{{ name }}</div>
-            <div class="subheading">{{ description }}</div>
+            <div class="subheading">
+              {{ description }}
+            </div>
             <v-divider class="my-3"></v-divider>
             <v-btn large color="white" to="/overview" class="primary--text ml-0">
               <v-icon left>more</v-icon>
@@ -391,6 +393,8 @@
 </template>
 
 <script>
+// @flow
+
 import { layout } from '~/shared/mixins';
 
 export default {
