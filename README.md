@@ -1,8 +1,41 @@
-# Vue Fullstack Template
+# Universal Vue Starter
 
-:paw_prints: Project template for [Vue Fullstack Starter](https://github.com/Shyam-Chen/Vue-Fullstack-Starter) and generates a blank **Full-stack** project via [Vue CLI](https://github.com/vuejs/vue-cli).
+:poodle: A boilerplate for universal Vue apps with Material, Express, Babel, Flow, and ReactiveX.
 
-## Usage
+:rainbow: Live Demo: [Dev Mode](https://universal-vue-starter.now.sh/) | [Prod Mode](https://universal-vue-starter.now.sh/)
+
+## Getting Started
+
+Follow steps to execute this boilerplate.
+
+1. Clone this boilerplate
+
+```bash
+$ git clone --depth 1 https://github.com/Shyam-Chen/Universal-Vue-Starter <PROJECT_NAME>
+$ cd <PROJECT_NAME>
+```
+
+2. Install dependencies
+
+```bash
+$ yarn install
+```
+
+3. Start a local server
+
+```bash
+$ yarn dev
+```
+
+4. Compile and bundle code
+
+```bash
+$ yarn build
+```
+
+## Project Template
+
+Generate a blank project via Vue CLI.
 
 1. Install Vue CLI
 
@@ -13,16 +46,10 @@ $ yarn global add vue-cli
 2. Create a project
 
 ```bash
-$ vue init Shyam-Chen/Vue-Fullstack-Template <PROJECT_NAME>
+# generate a blank Isomorphic project
+$ vue init Shyam-Chen/Universal-Vue-Template <PROJECT_NAME>
 ```
 
-3. Start your journey
+Now that you can start your journey.
 
-```bash
-$ cd <PROJECT_NAME>
-$ yarn install && yarn typed
-$ yarn start:app
-$ yarn start:api
-```
-
-:vertical_traffic_light: Detailed features and usage please go to [here](https://github.com/Shyam-Chen/Vue-Fullstack-Starter).
+Detailed template repository: [Universal Vue Template](https://github.com/Shyam-Chen/Universal-Vue-Template)
