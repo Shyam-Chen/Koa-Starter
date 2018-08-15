@@ -1,4 +1,4 @@
-# Universal Vue Starter
+# Vue Universal Starter
 
 :poodle: A boilerplate for universal Vue apps with Material, Express, Babel, Flow, and ReactiveX.
 
@@ -32,24 +32,3 @@ $ yarn dev
 ```bash
 $ yarn build
 ```
-
-## Project Template
-
-Generate a blank project via Vue CLI.
-
-1. Install Vue CLI
-
-```bash
-$ yarn global add vue-cli
-```
-
-2. Create a project
-
-```bash
-# generate a blank Isomorphic project
-$ vue init Shyam-Chen/Universal-Vue-Template <PROJECT_NAME>
-```
-
-Now that you can start your journey.
-
-Detailed template repository: [Universal Vue Template](https://github.com/Shyam-Chen/Universal-Vue-Template)
