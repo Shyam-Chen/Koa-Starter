@@ -2,7 +2,7 @@
 
 :poodle: A boilerplate for universal Vue apps with Material, Express, Babel, Flow, and ReactiveX.
 
-[![Build Status](https://img.shields.io/circleci/project/Shyam-Chen/Vue-Universal-Starter/develop.svg)](https://circleci.com/gh/Shyam-Chen/workflows/Vue-Universal-Starter)
+[![Build Status](https://img.shields.io/circleci/project/github/Shyam-Chen/Vue-Universal-Starter/develop.svg)](https://circleci.com/gh/Shyam-Chen/workflows/Vue-Universal-Starter)
 [![Coverage Status](https://img.shields.io/codecov/c/github/Shyam-Chen/Vue-Universal-Starter/develop.svg)](https://codecov.io/gh/Shyam-Chen/Vue-Universal-Starter)
  //
 [![dependencies Status](https://david-dm.org/Shyam-Chen/Vue-Universal-Starter/status.svg)](https://david-dm.org/Shyam-Chen/Vue-Universal-Starter)
