@@ -16,7 +16,11 @@
   "author": "Shyam Chen",
   "license": "MIT",
   "dependencies": {
-    "koa": "^2.7.0"
+    "@koa/cors": "^3.0.0",
+    "koa": "^2.7.0",
+    "koa-bodyparser": "^4.2.1",
+    "koa-logger": "^3.2.0",
+    "koa-router": "^7.4.0"
   },
   "devDependencies": {
     "@babel/core": "^7.3.4",
