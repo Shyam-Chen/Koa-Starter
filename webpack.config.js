@@ -12,10 +12,7 @@ const DISTRIBUTION_ROOT = path.join(__dirname, 'dist');
 module.exports = ({ prod } = {}) => ({
   mode: prod ? 'production' : 'development',
   context: SOURCE_ROOT,
-  entry: [
-    !prod && 'webpack/hot/poll?1000',
-    './app.js',
-  ].filter(Boolean),
+  entry: [!prod && 'webpack/hot/poll?1000', './app.js'].filter(Boolean),
   output: {
     path: DISTRIBUTION_ROOT,
     filename: '[name].js',
