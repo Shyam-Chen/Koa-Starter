@@ -1,6 +1,6 @@
 FROM node:10
 
-ENV HOME /Koa-Play
+ENV HOME /Koa-Starter
 
 WORKDIR ${HOME}
 ADD . $HOME
