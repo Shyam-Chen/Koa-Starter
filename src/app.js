@@ -3,7 +3,7 @@ import cors from '@koa/cors';
 import bodyParser from 'koa-bodyparser';
 import logger from 'koa-logger';
 
-import routes from '~/core/rest';
+import router from '~/core/router';
 
 const app = new Koa();
 
@@ -11,8 +11,8 @@ app.use(cors());
 app.use(bodyParser());
 app.use(logger());
 
-app.use(routes.routes());
-app.use(routes.allowedMethods());
+app.use(router.routes());
+app.use(router.allowedMethods());
 
 app.listen(3000);
 

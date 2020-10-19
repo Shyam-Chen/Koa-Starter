@@ -17,25 +17,25 @@ $ cd <PROJECT_NAME>
 $ yarn install
 ```
 
-3. Start a local server
+3. Start a development server
 
 ```bash
 $ yarn serve
 ```
 
-4. Compile and bundle code
+4. Produce a production-ready bundle
 
 ```bash
 $ yarn build
 ```
 
-5. Check code quality
+5. Lint and fix files
 
 ```bash
 $ yarn lint
 ```
 
-6. Runs unit tests
+6. Run unit tests
 
 ```bash
 $ yarn unit
