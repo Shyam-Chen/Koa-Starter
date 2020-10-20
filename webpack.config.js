@@ -1,5 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
+// const StartServerPlugin = require('start-server-webpack-plugin');
 const NodemonPlugin = require('nodemon-webpack-plugin');
 const nodeExternals = require('webpack-node-externals');
 const envify = require('process-envify');
@@ -34,6 +35,7 @@ module.exports = ({ prod } = {}) => ({
   plugins: [
     new webpack.DefinePlugin(envify(env)),
     !prod && new webpack.HotModuleReplacementPlugin(),
+    // !prod && new StartServerPlugin({ name: 'app.js' }),
     !prod && new NodemonPlugin(),
   ].filter(Boolean),
   devtool: prod ? 'hidden-source-map' : 'cheap-module-eval-source-map',

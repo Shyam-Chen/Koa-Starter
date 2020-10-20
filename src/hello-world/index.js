@@ -1,2 +1,6 @@
 export { default } from './controller';
-export { default as service } from './service';
+
+// export { typeDef as helloWorldTypeDef } from './resolver';
+// export { default as helloWorldResolver } from './resolver';
+
+export { default as helloWorldService } from './service';

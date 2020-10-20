@@ -3,7 +3,8 @@ import cors from '@koa/cors';
 import bodyParser from 'koa-bodyparser';
 import logger from 'koa-logger';
 
-import router from '~/core/router';
+import rest from '~/core/rest';
+// import graphql from '~/core/graphql';
 
 const app = new Koa();
 
@@ -11,8 +12,9 @@ app.use(cors());
 app.use(bodyParser());
 app.use(logger());
 
-app.use(router.routes());
-app.use(router.allowedMethods());
+app.use(rest.routes());
+app.use(rest.allowedMethods());
+// graphql.applyMiddleware({ app });
 
 app.listen(3000);
 
