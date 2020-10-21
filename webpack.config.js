@@ -1,7 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
-// const StartServerPlugin = require('start-server-webpack-plugin');
-const NodemonPlugin = require('nodemon-webpack-plugin');
+const StartServerPlugin = require('start-server-webpack-plugin');
 const nodeExternals = require('webpack-node-externals');
 const envify = require('process-envify');
 
@@ -16,7 +15,7 @@ module.exports = ({ prod } = {}) => ({
   entry: [!prod && 'webpack/hot/poll?1000', './app.js'].filter(Boolean),
   output: {
     path: DISTRIBUTION_ROOT,
-    filename: '[name].js',
+    filename: 'app.js',
   },
   module: {
     rules: [
@@ -35,14 +34,13 @@ module.exports = ({ prod } = {}) => ({
   plugins: [
     new webpack.DefinePlugin(envify(env)),
     !prod && new webpack.HotModuleReplacementPlugin(),
-    // !prod && new StartServerPlugin({ name: 'app.js' }),
-    !prod && new NodemonPlugin(),
+    !prod && new StartServerPlugin({ name: 'app.js' }),
   ].filter(Boolean),
   devtool: prod ? 'hidden-source-map' : 'cheap-module-eval-source-map',
   target: 'node',
   externals: [
     nodeExternals({
-      whitelist: ['webpack/hot/poll?1000'],
+      allowlist: ['webpack/hot/poll?1000'],
     }),
   ],
 });

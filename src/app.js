@@ -16,10 +16,11 @@ app.use(rest.routes());
 app.use(rest.allowedMethods());
 // graphql.applyMiddleware({ app });
 
-app.listen(3000);
+const server = app.listen(3000);
 
 if (module.hot) {
   module.hot.accept();
+  module.hot.dispose(() => server.close());
 }
 
 export default app;
