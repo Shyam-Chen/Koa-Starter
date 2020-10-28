@@ -1,14 +1,16 @@
 import { ApolloServer } from 'apollo-server-koa';
 import { mergeTypeDefs, mergeResolvers } from '@graphql-tools/merge';
 
-// import { helloWorldTypeDef, helloWorldResolver } from '~/hello-world';
+import { HelloWorld } from '~/hello-world';
 
 const typeDefs = mergeTypeDefs([
-  // helloWorldTypeDef,
+  HelloWorld.typeDef,
+  // ...
 ]);
 
 const resolvers = mergeResolvers([
-  // helloWorldResolver,
+  HelloWorld.resolver,
+  // ...
 ]);
 
 export default new ApolloServer({

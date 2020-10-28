@@ -1,6 +1,7 @@
-export { default } from './controller';
+import controller from './controller';
+import resolver, { typeDef } from './resolver';
+import service from './service';
 
-// export { typeDef as helloWorldTypeDef } from './resolver';
-// export { default as helloWorldResolver } from './resolver';
+export const HelloWorld = { controller, typeDef, resolver, service };
 
-export { default as helloWorldService } from './service';
+export default controller;
