@@ -2,7 +2,7 @@
 /* eslint-disable global-require */
 let app = require('./app').default;
 
-const server = app.listen(3000);
+const server = app.listen(process.env.SITE_PORT);
 
 if (module.hot) {
   module.hot.accept('./app', () => {
