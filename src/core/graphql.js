@@ -16,5 +16,5 @@ const resolvers = mergeResolvers([
 export default new ApolloServer({
   typeDefs,
   resolvers,
-  // context,
+  context: ({ ctx }) => ctx,
 });
