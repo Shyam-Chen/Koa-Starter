@@ -46,3 +46,76 @@ $ yarn unit
 ```sh
 $ yarn e2e
 ```
+
+## Examples
+
+- [Hello World](./src/hello-world)
+- CRUD Operations
+- Authentication
+- File Uploads
+- Realtime Data
+
+## Directory Structure
+
+```ts
+.
+├── src
+│   ├── core
+│   │   └── ...
+│   ├── <FEATURE> -> feature module
+│   │   ├── __tests__
+│   │   │   ├── controller.spec.js
+│   │   │   ├── resolver.spec.js
+│   │   │   ├── document.spec.js
+│   │   │   ├── relational.spec.js
+│   │   │   ├── service.spec.js
+│   │   │   ├── rest.e2e-spec.js
+│   │   │   └── graphql.e2e-spec.js
+│   │   ├── controller.js -> rest controller
+│   │   ├── resolver.js -> graphql resolver
+│   │   ├── document.js -> mongodb odm
+│   │   ├── relational.js -> postgresql orm
+│   │   ├── service.js -> provider
+│   │   └── index.js
+│   ├── <GROUP> -> module group
+│   │   └── <FEATURE> -> feature module
+│   │       ├── __tests__
+│   │       │   ├── controller.spec.js
+│   │       │   ├── resolver.spec.js
+│   │       │   ├── document.spec.js
+│   │       │   ├── relational.spec.js
+│   │       │   ├── service.spec.js
+│   │       │   ├── rest.e2e-spec.js
+│   │       │   └── graphql.e2e-spec.js
+│   │       ├── controller.js -> rest controller
+│   │       ├── resolver.js -> graphql resolver
+│   │       ├── document.js -> mongodb odm
+│   │       ├── relational.js -> postgresql orm
+│   │       ├── service.js -> provider
+│   │       └── index.js
+│   ├── shared
+│   │   └── ...
+│   ├── app.js
+│   └── server.js
+├── .editorconfig
+├── .eslintrc
+├── .gitignore
+├── .prettierrc
+├── babel.config.js
+├── circle.yml
+├── docker-compose.yml
+├── Dockerfile
+├── env.js
+├── jest.config.js
+├── LICENSE
+├── package.json
+├── README.md
+├── webpack.config.js
+└── yarn.lock
+```
+
+## Microservices
+
+> Microservice architecture – a variant of the service-oriented architecture structural style – arranges an application as a collection of loosely coupled services. In a microservices architecture, services are fine-grained and the protocols are lightweight.
+
+See [Server-side Micro-Fullstack](https://github.com/Shyam-Chen/Micro-Fullstack/tree/master/server) for instructions on how to create microservices from source code.
