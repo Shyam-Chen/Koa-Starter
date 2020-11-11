@@ -22,7 +22,7 @@
     "@koa/router": "^9.4.0",
     "apollo-server-koa": "^2.18.2",
     "bcrypt": "^5.0.0",
-    "graphql": "^15.3.0",
+    "graphql": "^15.4.0",
     "ioredis": "^4.19.2",
     "jose": "^2.0.3",
     "koa": "^2.13.0",
@@ -38,6 +38,7 @@
   "devDependencies": {
     "@babel/core": "^7.3.4",
     "@babel/preset-env": "^7.3.4",
+    "@graphql-tools/schema": "^7.0.0",
     "@shopify/jest-koa-mocks": "^2.2.3",
     "babel-eslint": "^10.0.1",
     "babel-jest": "^24.1.0",
