@@ -4,16 +4,16 @@ import service from './service';
 
 export const typeDef = gql`
   type Query {
-    hello(text: String): String
+    hello(data: String): String
   }
 `;
 
 export default {
   Query: {
-    // http POST :3000/graphql query="{ hello }"
-    // http POST :3000/graphql query="{ hello('Koa') }"
-    hello() {
-      return service.sayHello();
+    // query { hello }
+    // query { hello(data: "Koa") }
+    hello(parent, args) {
+      return service.sayHello(args.data);
     },
   },
 };

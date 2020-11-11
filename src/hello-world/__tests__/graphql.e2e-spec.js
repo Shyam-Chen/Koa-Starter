@@ -3,7 +3,8 @@ import { gql } from 'apollo-server-koa';
 
 describe('Hello World', () => {
   it('should get a `Hello, World!`', async () => {
-    const { statusCode, body } = await request(global.API_URL)
+    // TODO: global.app <- app.callback()
+    const { statusCode, body } = await request(global.app)
       .post('/graphql')
       .send({
         query: gql`
@@ -17,7 +18,7 @@ describe('Hello World', () => {
 
     expect(body).toEqual({
       data: {
-        helloWorld: 'Hello, World!',
+        hello: 'Hello, World!',
       },
     });
   });
