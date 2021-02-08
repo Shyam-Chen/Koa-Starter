@@ -1,5 +1,7 @@
 # Koa Starter
 
+:egg: A boilerplate for Node.js, Koa, Mongoose, Heroku, Atlas, Nodemon, PM2, and Babel.
+
 ## Getting Started
 
 Follow steps to execute this boilerplate.
@@ -93,8 +95,6 @@ $ yarn e2e
 │   │       ├── relational.js -> postgresql orm
 │   │       ├── service.js -> provider
 │   │       └── index.js
-│   ├── shared
-│   │   └── ...
 │   ├── app.js
 │   └── server.js
 ├── .editorconfig
@@ -118,4 +118,4 @@ $ yarn e2e
 
 > Microservice architecture – a variant of the service-oriented architecture structural style – arranges an application as a collection of loosely coupled services. In a microservices architecture, services are fine-grained and the protocols are lightweight.
 
-See [Server-side Micro-Fullstack](https://github.com/Shyam-Chen/Micro-Fullstack/tree/master/server) for instructions on how to create microservices from source code.
+See [Server-side Micro-Fullstack](https://github.com/Shyam-Chen/Micro-Fullstack/tree/master/mbe) for instructions on how to create microservices from source code.

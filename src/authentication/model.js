@@ -20,14 +20,11 @@ import mongoose, { Schema } from 'mongoose';
  * }
  */
 const userSchema = new Schema({
-  username: {
+  firstName: {
     type: String,
-    required: true,
-    unique: true,
   },
-  password: {
+  lastName: {
     type: String,
-    required: true,
   },
   email: {
     type: String,
@@ -41,20 +38,13 @@ const userSchema = new Schema({
     },
     required: true,
   },
-  role: {
+  password: {
     type: String,
-    enum: ['admin', 'user'],
-    default: 'user',
+    required: true,
   },
-  permissions: [
-    {
-      route: String,
-      operations: {
-        type: [String],
-        enum: ['create', 'read', 'update', 'delete'],
-      },
-    },
-  ],
+  countryOrRegion: {
+    type: String,
+  },
 });
 
 export default mongoose.model('User', userSchema);

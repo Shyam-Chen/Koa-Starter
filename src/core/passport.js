@@ -1,7 +1,7 @@
 import passport from 'koa-passport';
 import { Strategy as JWTStrategy, ExtractJwt } from 'passport-jwt';
 
-import UserDocument from '~/authentication/document';
+import UserModel from '~/authentication/model';
 
 passport.use(
   new JWTStrategy(
@@ -13,7 +13,7 @@ passport.use(
       try {
         if (Date.now() > jwtPayload.expires) return done('Token expired');
 
-        const user = await UserDocument.findOne({ username: jwtPayload.username }).exec();
+        const user = await UserModel.findOne({ username: jwtPayload.username }).exec();
         return done(null, user);
       } catch (error) {
         return done(error);

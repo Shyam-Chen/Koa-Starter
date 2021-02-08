@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 /* eslint-disable global-require */
 let app = require('./app').default;
 
@@ -11,7 +10,7 @@ if (module.hot) {
       app = require('./app').default;
       server.on('request', app.callback());
     } catch (err) {
-      console.error(err);
+      // The exception is handled by Webpack.
     }
   });
 
