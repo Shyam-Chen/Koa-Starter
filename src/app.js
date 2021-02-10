@@ -4,7 +4,7 @@ import cors from '@koa/cors';
 import bodyParser from 'koa-bodyparser';
 import logger from 'koa-logger';
 
-import router from '~/core/router';
+import router from './core/router';
 // import redis from '~/core/redis';
 
 const app = new Koa();

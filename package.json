@@ -4,7 +4,7 @@
   "description": "",
   "scripts": {
     "serve": "rimraf dist && webpack -w",
-    "build": "rimraf dist && webpack --env.prod",
+    "build": "rimraf dist && node build.js",
     "lint": "eslint 'src/**/*.js'",
     "unit": "jest \"src/.*\\.js$\" --coverage --detectOpenHandles --forceExit",
     "e2e": "JEST_ENV=e2e jest \"src/.*\\.js$\" --forceExit",
@@ -47,6 +47,7 @@
     "babel-jest": "^24.1.0",
     "babel-loader": "^8.0.5",
     "codecov": "^3.2.0",
+    "esbuild": "^0.8.42",
     "eslint": "^5.14.1",
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-config-prettier": "^6.1.0",

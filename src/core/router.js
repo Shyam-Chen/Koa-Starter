@@ -1,6 +1,6 @@
 import Router from '@koa/router';
 
-import helloWorld from '~/hello-world';
+import helloWorld from '../hello-world';
 
 const router = new Router();
 
