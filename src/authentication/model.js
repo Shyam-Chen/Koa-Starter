@@ -1,4 +1,4 @@
-import mongoose, { Schema } from 'mongoose';
+import mongoose from 'mongoose';
 
 /**
  * @example
@@ -19,32 +19,36 @@ import mongoose, { Schema } from 'mongoose';
  *   ],
  * }
  */
-const userSchema = new Schema({
-  firstName: {
-    type: String,
-  },
-  lastName: {
-    type: String,
-  },
-  email: {
-    type: String,
-    validate: {
-      validator(value) {
-        return /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i.test(
-          value,
-        );
-      },
-      message: ({ value }) => `${value} is not a valid email format`,
-    },
-    required: true,
-  },
-  password: {
-    type: String,
-    required: true,
-  },
-  countryOrRegion: {
-    type: String,
-  },
-});
 
-export default mongoose.model('User', userSchema);
+export default {
+  User: mongoose.model(
+    'User',
+    new mongoose.Schema({
+      firstName: {
+        type: String,
+      },
+      lastName: {
+        type: String,
+      },
+      email: {
+        type: String,
+        validate: {
+          validator(value) {
+            return /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i.test(
+              value,
+            );
+          },
+          message: ({ value }) => `${value} is not a valid email format`,
+        },
+        required: true,
+      },
+      password: {
+        type: String,
+        required: true,
+      },
+      countryOrRegion: {
+        type: String,
+      },
+    }),
+  ),
+};

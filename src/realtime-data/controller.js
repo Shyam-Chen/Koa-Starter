@@ -2,7 +2,7 @@ import Router from '@koa/router';
 
 // import service from './service';
 
-const router = new Router({ prefix: '/authentication' });
+const router = new Router({ prefix: '/realtime-data' });
 
 router.post('/', async ctx => {
   ctx.body = {};
