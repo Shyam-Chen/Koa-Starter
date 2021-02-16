@@ -49,6 +49,44 @@ $ yarn unit
 $ yarn e2e
 ```
 
+- MongoDB
+
+```sh
+$ brew tap mongodb/brew
+$ brew install mongodb-community
+$ mongo --version
+# MongoDB shell version v4.4.1
+# Build Info: {
+#     "version": "4.4.1",
+#     "gitVersion": "ad91a93a5a31e175f5cbf8c69561e788bbc55ce1",
+#     "modules": [],
+#     "allocator": "system",
+#     "environment": {
+#         "distarch": "x86_64",
+#         "target_arch": "x86_64"
+#     }
+# }
+
+# Starting MongoDB
+$ brew services run mongodb-community
+$ brew services list
+
+# Stopping MongoDB
+$ brew services stop mongodb-community
+```
+
+- Redis
+
+```sh
+$ brew install redis
+$ brew services start redis
+$ brew services list
+$ redis-cli ping
+# PONG
+
+$ brew services stop redis
+```
+
 ## Examples
 
 - [Hello World](./src/hello-world)
@@ -67,16 +105,11 @@ $ yarn e2e
 │   ├── <FEATURE> -> feature module
 │   │   ├── __tests__
 │   │   │   ├── controller.spec.js
-│   │   │   ├── resolver.spec.js
-│   │   │   ├── document.spec.js
-│   │   │   ├── relational.spec.js
+│   │   │   ├── model.spec.js
 │   │   │   ├── service.spec.js
-│   │   │   ├── rest.e2e-spec.js
-│   │   │   └── graphql.e2e-spec.js
+│   │   │   └── rest|<FLOW_NAME>.e2e-spec.js
 │   │   ├── controller.js -> rest controller
-│   │   ├── resolver.js -> graphql resolver
-│   │   ├── document.js -> mongodb odm
-│   │   ├── relational.js -> postgresql orm
+│   │   ├── model.js -> mongodb odm
 │   │   ├── service.js -> provider
 │   │   └── index.js
 │   ├── <GROUP> -> module group

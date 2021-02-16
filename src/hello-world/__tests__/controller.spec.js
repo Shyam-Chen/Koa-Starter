@@ -1,3 +1,5 @@
+import { createMockContext } from '@shopify/jest-koa-mocks';
+
 import controller from '../controller';
 
 const getHandler = (router, { method, path, position = 0 }) =>
@@ -6,7 +8,7 @@ const getHandler = (router, { method, path, position = 0 }) =>
 describe('hello-world', () => {
   it('should get a `Hello, World!`', async () => {
     const handler = getHandler(controller, { method: 'POST', path: '/hello-world' });
-    const ctx = { request: { body: {} } };
+    const ctx = createMockContext({ requestBody: {} });
     await handler(ctx);
     expect(ctx.body).toEqual({ data: 'Hello, World!' });
   });
