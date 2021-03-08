@@ -1,10 +1,10 @@
 import Router from '@koa/router';
 
-import helloWorld from '../hello-world';
-import crudOperations from '../crud-operations';
-import authentication from '../authentication';
-import fileUploads from '../file-uploads';
-import realtimeData from '../realtime-data';
+import helloWorld from '~/hello-world';
+import crudOperations from '~/crud-operations';
+import authentication from '~/authentication';
+import fileUploads from '~/file-uploads';
+import realtimeData from '~/realtime-data';
 
 const router = new Router();
 

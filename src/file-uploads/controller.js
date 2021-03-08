@@ -1,6 +1,6 @@
 import Router from '@koa/router';
 
-import multer from '../core/multer';
+import multer from '~/core/multer';
 
 // import service from './service';
 

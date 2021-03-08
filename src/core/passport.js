@@ -1,7 +1,7 @@
 import passport from 'koa-passport';
 import { Strategy as JWTStrategy, ExtractJwt } from 'passport-jwt';
 
-import UserModel from '../authentication/model';
+import UserModel from '~/authentication/model';
 
 passport.use(
   new JWTStrategy(
