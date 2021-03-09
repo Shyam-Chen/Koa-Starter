@@ -2,6 +2,16 @@
 
 :egg: A boilerplate for Node.js, Koa, Mongoose, Heroku, Atlas, Nodemon, PM2, and Babel.
 
+## Table of Contents
+
+- [Getting Started](#getting-started)
+- [Key Features](#key-features)
+- [Dockerization](#dockerization)
+- [Configuration](#configuration)
+- [Examples](#examples)
+- [Directory Structure](#directory-structure)
+- [Microservices](#microservices)
+
 ## Getting Started
 
 Follow steps to execute this boilerplate.
@@ -22,6 +32,8 @@ $ yarn install
 3. Start a development server
 
 ```bash
+$ brew services start redis
+$ brew services start mongodb-community
 $ yarn serve
 ```
 
@@ -49,42 +61,24 @@ $ yarn unit
 $ yarn e2e
 ```
 
-- MongoDB
+## Key Features
 
-```sh
-$ brew tap mongodb/brew
-$ brew install mongodb-community
-$ mongo --version
-# MongoDB shell version v4.4.1
-# Build Info: {
-#     "version": "4.4.1",
-#     "gitVersion": "ad91a93a5a31e175f5cbf8c69561e788bbc55ce1",
-#     "modules": [],
-#     "allocator": "system",
-#     "environment": {
-#         "distarch": "x86_64",
-#         "target_arch": "x86_64"
-#     }
-# }
+- [Koa](https://github.com/koajs/koa)
 
-# Starting MongoDB
-$ brew services run mongodb-community
-$ brew services list
+## Dockerization
 
-# Stopping MongoDB
-$ brew services stop mongodb-community
 ```
 
-- Redis
+```
 
-```sh
-$ brew install redis
-$ brew services start redis
-$ brew services list
-$ redis-cli ping
-# PONG
+## Configuration
 
-$ brew services stop redis
+### File-based environments
+
+If you want to set environment variables from a file.
+
+```
+
 ```
 
 ## Examples
@@ -105,28 +99,23 @@ $ brew services stop redis
 │   ├── <FEATURE> -> feature module
 │   │   ├── __tests__
 │   │   │   ├── controller.spec.js
-│   │   │   ├── model.spec.js
 │   │   │   ├── service.spec.js
+│   │   │   ├── model.spec.js
 │   │   │   └── rest|<FLOW_NAME>.e2e-spec.js
-│   │   ├── controller.js -> rest controller
-│   │   ├── model.js -> mongodb odm
-│   │   ├── service.js -> provider
+│   │   ├── controller.js
+│   │   ├── service.js
+│   │   ├── model.js
 │   │   └── index.js
 │   ├── <GROUP> -> module group
 │   │   └── <FEATURE> -> feature module
 │   │       ├── __tests__
 │   │       │   ├── controller.spec.js
-│   │       │   ├── resolver.spec.js
-│   │       │   ├── document.spec.js
-│   │       │   ├── relational.spec.js
 │   │       │   ├── service.spec.js
-│   │       │   ├── rest.e2e-spec.js
-│   │       │   └── graphql.e2e-spec.js
-│   │       ├── controller.js -> rest controller
-│   │       ├── resolver.js -> graphql resolver
-│   │       ├── document.js -> mongodb odm
-│   │       ├── relational.js -> postgresql orm
-│   │       ├── service.js -> provider
+│   │       │   ├── model.spec.js
+│   │       │   └── rest|<FLOW_NAME>.e2e-spec.js
+│   │       ├── controller.js
+│   │       ├── service.js
+│   │       ├── model.js
 │   │       └── index.js
 │   ├── app.js
 │   └── server.js
@@ -135,6 +124,7 @@ $ brew services stop redis
 ├── .gitignore
 ├── .prettierrc
 ├── babel.config.js
+├── build.js
 ├── circle.yml
 ├── docker-compose.yml
 ├── Dockerfile

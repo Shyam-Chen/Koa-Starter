@@ -1,6 +1,6 @@
 import Koa from 'koa';
 import cors from '@koa/cors';
-// import ratelimit from 'koa-ratelimit';
+import ratelimit from 'koa-ratelimit';
 import bodyParser from 'koa-bodyparser';
 import session from 'koa-generic-session';
 import redisStore from 'koa-redis';
@@ -12,7 +12,7 @@ import redis from '~/core/redis';
 const app = new Koa();
 
 app.use(cors());
-// app.use(ratelimit({ driver: 'redis', db: redis }));
+app.use(ratelimit({ driver: 'redis', db: redis }));
 app.use(bodyParser());
 app.use(session({ store: redisStore({ client: redis }) }));
 app.use(logger());
