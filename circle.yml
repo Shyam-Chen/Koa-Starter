@@ -1,13 +1,13 @@
-version: 2
+version: 2.1
 
-base: &base
-  working_directory: ~/Koa-Starter
-  docker:
-    - image: circleci/node:14
+executors:
+  koa-starter:
+    docker:
+      - image: circleci/node:14
 
 jobs:
   test:
-    <<: *base
+    executor: koa-starter
     steps:
       - checkout
       - setup_remote_docker
@@ -20,12 +20,7 @@ jobs:
 
 workflows:
   version: 2
-  build-test-deploy:
+
+  parallel-test:
     jobs:
-      - build
-      - test:
-          requires:
-            - build
-      - deploy:
-          requires:
-            - test
+      - test
