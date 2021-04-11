@@ -8,6 +8,7 @@ import logger from 'koa-logger';
 
 import router from '~/core/router';
 import redis from '~/core/redis';
+import passport from '~/core/passport';
 
 const app = new Koa();
 
@@ -16,6 +17,9 @@ app.use(ratelimit({ driver: 'redis', db: redis }));
 app.use(bodyParser());
 app.use(session({ store: redisStore({ client: redis }) }));
 app.use(logger());
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use(router.routes());
 app.use(router.allowedMethods());

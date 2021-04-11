@@ -4,7 +4,7 @@
 
 ## Table of Contents
 
-- [Getting Started](#getting-started)
+- [Project Setup](#project-setup)
 - [Key Features](#key-features)
 - [Dockerization](#dockerization)
 - [Configuration](#configuration)
@@ -12,24 +12,17 @@
 - [Directory Structure](#directory-structure)
 - [Microservices](#microservices)
 
-## Getting Started
+## Project Setup
 
 Follow steps to execute this boilerplate.
 
-1. Clone this boilerplate
-
-```bash
-$ git clone --depth 1 https://github.com/Shyam-Chen/Koa-Starter.git <PROJECT_NAME>
-$ cd <PROJECT_NAME>
-```
-
-2. Install dependencies
+### Install dependencies
 
 ```bash
 $ yarn install
 ```
 
-3. Start a development server
+### Start a development server
 
 ```bash
 $ brew services start redis
@@ -37,39 +30,67 @@ $ brew services start mongodb-community
 $ yarn serve
 ```
 
-4. Produce a production-ready bundle
+### Produce a production-ready bundle
 
 ```bash
 $ yarn build
 ```
 
-5. Lint and fix files
+### Lint and fix files
 
 ```bash
 $ yarn lint
 ```
 
-6. Run unit tests
+### Runs unit tests
+
+Files: `src/**/*.spec.js`
 
 ```bash
 $ yarn unit
 ```
 
-7. Run end-to-end tests
+### Runs end-to-end tests
+
+Files: `e2e/**/*.spec.js`
 
 ```sh
+# Before running the `meas` command, make sure to run the following commands.
+$ yarn build
+$ yarn preview
+
+# If it's not setup, run it.
+$ yarn setup
+
 $ yarn e2e
+```
+
+
+### Measures APIs
+
+Files: `e2e/**/*.meas.js`
+
+```sh
+# Before running the `meas` command, make sure to run the following commands.
+$ yarn build
+$ yarn preview
+
+# If it's not setup, run it.
+$ yarn setup
+
+$ yarn meas
 ```
 
 ## Key Features
 
 - [Koa](https://github.com/koajs/koa)
+- [Koa Router](https://github.com/koajs/router)
 
 ## Dockerization
 
 Dockerize an application.
 
-```
+```sh
 
 ```
 
@@ -82,7 +103,7 @@ Control the environment.
 Set your local environment variables. (use `this.<ENV_NAME> = process.env.<ENV_NAME> || <LOCAL_ENV>;`)
 
 ```js
-function Environments() {
+function Environment() {
   this.NODE_ENV = process.env.NODE_ENV || 'development';
 
   this.HOST_NAME = process.env.HOST_NAME || '0.0.0.0';
@@ -94,7 +115,7 @@ function Environments() {
   this.CLOUDINARY_URL = process.env.CLOUDINARY_URL || 'cloudinary://key:secret@domain_name';
 }
 
-module.exports = new Environments();
+module.exports = new Environment();
 ```
 
 ### Runtime environments
@@ -127,7 +148,7 @@ If you want to set environment variables from a file.
 ```js
 // envs/<ENV_NAME>.js
 
-function Environments() {
+function Environment() {
   this.NODE_ENV = 'production';
 
   this.HOST_NAME = '0.0.0.0';
@@ -139,7 +160,7 @@ function Environments() {
   this.CLOUDINARY_URL = 'cloudinary://key:secret@domain_name';
 }
 
-module.exports = new Environments();
+module.exports = new Environment();
 ```
 
 ```sh

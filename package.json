@@ -1,7 +1,7 @@
 {
   "name": "koa-starter",
   "version": "1.0.0",
-  "description": "",
+  "private": true,
   "scripts": {
     "serve": "rimraf dist && webpack -w",
     "build": "rimraf dist && node build.js",
@@ -10,12 +10,6 @@
     "e2e": "JEST_ENV=e2e jest \"src/.*\\.js$\" --forceExit",
     "_codecov": "codecov"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Shyam-Chen/Koa-Starter.git"
-  },
-  "author": "Shyam Chen",
-  "license": "MIT",
   "dependencies": {
     "@koa/cors": "^3.1.0",
     "@koa/multer": "^3.0.0",

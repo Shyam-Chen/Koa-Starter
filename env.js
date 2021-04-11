@@ -1,4 +1,4 @@
-function Environments() {
+function Environment() {
   this.NODE_ENV = process.env.NODE_ENV || 'development';
 
   this.HOST_NAME = process.env.HOST_NAME || '0.0.0.0';
@@ -10,4 +10,4 @@ function Environments() {
   this.CLOUDINARY_URL = process.env.CLOUDINARY_URL || 'cloudinary://key:secret@domain_name';
 }
 
-module.exports = new Environments();
+module.exports = new Environment();
