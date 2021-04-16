@@ -36,7 +36,7 @@ $ yarn serve
 $ yarn build
 ```
 
-### Lint and fix files
+### Lints and fixes files
 
 ```bash
 $ yarn lint
@@ -65,7 +65,6 @@ $ yarn setup
 $ yarn e2e
 ```
 
-
 ### Measures APIs
 
 Files: `e2e/**/*.meas.js`
@@ -79,6 +78,15 @@ $ yarn preview
 $ yarn setup
 
 $ yarn meas
+```
+
+### Mocks third-party APIs
+
+```sh
+# If it's not active, run it.
+$ yarn active
+
+$ yarn mock
 ```
 
 ## Key Features
@@ -109,8 +117,9 @@ function Environment() {
   this.HOST_NAME = process.env.HOST_NAME || '0.0.0.0';
   this.SITE_PORT = process.env.SITE_PORT || 3000;
 
-  this.SECRET = process.env.SECRET || 'SrScah0TXyRFyo7tqYBgmk9YgAPNGKXR';
+  this.SECRET_KEY = process.env.SECRET_KEY || 'SrScah0TXyRFyo7tqYBgmk9YgAPNGKXR';
 
+  this.REDIS_URL = process.env.REDIS_URL || 'redis://127.0.0.1:6379/4';
   this.MONGODB_URI = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/test';
   this.CLOUDINARY_URL = process.env.CLOUDINARY_URL || 'cloudinary://key:secret@domain_name';
 }
@@ -126,6 +135,9 @@ Set Docker environment variables during image build. (see `produce.Dockerfile`)
 # envs --
 ARG secret_key
 ENV SECRET_KEY=$secret_key
+
+ARG redis_url
+ENV REDIS_URL=$redis_url
 
 ARG mongodb_uri
 ENV MONGODB_URI=$mongodb_uri
@@ -154,8 +166,9 @@ function Environment() {
   this.HOST_NAME = '0.0.0.0';
   this.SITE_PORT = 3000;
 
-  this.SECRET = 'SrScah0TXyRFyo7tqYBgmk9YgAPNGKXR';
+  this.SECRET_KEY = 'SrScah0TXyRFyo7tqYBgmk9YgAPNGKXR';
 
+  this.REDIS_URL = 'redis://127.0.0.1:6379/4';
   this.MONGODB_URI = 'mongodb://127.0.0.1:27017/test';
   this.CLOUDINARY_URL = 'cloudinary://key:secret@domain_name';
 }
