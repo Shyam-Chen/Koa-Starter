@@ -111,6 +111,8 @@ Control the environment.
 Set your local environment variables. (use `this.<ENV_NAME> = process.env.<ENV_NAME> || <LOCAL_ENV>;`)
 
 ```js
+// env.js
+
 function Environment() {
   this.NODE_ENV = process.env.NODE_ENV || 'development';
 
@@ -201,8 +203,12 @@ $ yarn add env-cmd -D
 
 ## Directory Structure
 
-```ts
+```coffee
 .
+├── e2e
+├── mock
+│   ├── requests
+│   └── responses
 ├── src
 │   ├── core
 │   │   └── ...
@@ -210,8 +216,7 @@ $ yarn add env-cmd -D
 │   │   ├── __tests__
 │   │   │   ├── controller.spec.js
 │   │   │   ├── service.spec.js
-│   │   │   ├── model.spec.js
-│   │   │   └── rest|<FLOW_NAME>.e2e-spec.js
+│   │   │   └── model.spec.js
 │   │   ├── controller.js
 │   │   ├── service.js
 │   │   ├── model.js
@@ -221,8 +226,7 @@ $ yarn add env-cmd -D
 │   │       ├── __tests__
 │   │       │   ├── controller.spec.js
 │   │       │   ├── service.spec.js
-│   │       │   ├── model.spec.js
-│   │       │   └── rest|<FLOW_NAME>.e2e-spec.js
+│   │       │   └── model.spec.js
 │   │       ├── controller.js
 │   │       ├── service.js
 │   │       ├── model.js
@@ -235,6 +239,7 @@ $ yarn add env-cmd -D
 ├── .prettierrc
 ├── babel.config.js
 ├── build.js
+├── Caddyfile
 ├── circle.yml
 ├── docker-compose.yml
 ├── Dockerfile

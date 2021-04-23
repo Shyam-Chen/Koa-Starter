@@ -6,8 +6,13 @@
     "serve": "rimraf dist && webpack -w",
     "build": "rimraf dist && node build.js",
     "lint": "eslint 'src/**/*.js'",
-    "unit": "jest \"src/.*\\.js$\" --coverage --detectOpenHandles --forceExit",
-    "e2e": "JEST_ENV=e2e jest \"src/.*\\.js$\" --forceExit",
+    "unit": "jest --coverage",
+    "preview": "caddy run",
+    "setup": "cd e2e && yarn install",
+    "e2e": "cd e2e && yarn test",
+    "meas": "cd e2e && yarn perf",
+    "active": "cd mock/requests && yarn install",
+    "mock": "cd mock/requests && yarn serve",
     "_codecov": "codecov"
   },
   "dependencies": {
