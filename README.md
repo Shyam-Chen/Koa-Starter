@@ -152,10 +152,12 @@ If you want to set environment variables from a file.
 
 ```ts
 .
+├── e2e
 ├── envs
 │   ├── dev.js
 │   ├── stage.js
 │   └── prod.js
+├── mock
 └── src
 ```
 

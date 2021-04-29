@@ -20,35 +20,51 @@ import mongoose from 'mongoose';
  * }
  */
 
+const userSchema = new mongoose.Schema({
+  firstName: {
+    type: String,
+  },
+  lastName: {
+    type: String,
+  },
+  email: {
+    type: String,
+    validate: {
+      validator(value) {
+        return /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i.test(
+          value,
+        );
+      },
+      message: ({ value }) => `${value} is not a valid email format`,
+    },
+    required: true,
+  },
+  password: {
+    type: String,
+    required: true,
+  },
+  countryOrRegion: {
+    type: String,
+  },
+});
+
+const refreshTokenSchema = new mongoose.Schema({
+  user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+  token: String,
+  expires: Date,
+  revoked: Date,
+  ipAddress: String,
+});
+
+refreshTokenSchema.virtual('isExpired').get(() => {
+  return Date.now() >= this.expires;
+});
+
+refreshTokenSchema.virtual('isActive').get(() => {
+  return !this.revoked && !this.isExpired;
+});
+
 export default {
-  User: mongoose.model(
-    'User',
-    new mongoose.Schema({
-      firstName: {
-        type: String,
-      },
-      lastName: {
-        type: String,
-      },
-      email: {
-        type: String,
-        validate: {
-          validator(value) {
-            return /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i.test(
-              value,
-            );
-          },
-          message: ({ value }) => `${value} is not a valid email format`,
-        },
-        required: true,
-      },
-      password: {
-        type: String,
-        required: true,
-      },
-      countryOrRegion: {
-        type: String,
-      },
-    }),
-  ),
+  User: mongoose.model('User', userSchema),
+  RefreshToken: mongoose.model('RefreshToken', refreshTokenSchema),
 };
