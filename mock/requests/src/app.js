@@ -6,7 +6,7 @@ import logger from 'koa-logger';
 import delay from '~/middlewares/delay';
 import sleep from '~/middlewares/sleep';
 
-import helloWorld from '~/modules/hello-world';
+import recaptcha from '~/modules/recaptcha';
 
 const app = new Koa();
 
@@ -16,6 +16,6 @@ app.use(logger());
 app.use(delay());
 app.use(sleep());
 
-app.use(helloWorld.routes(), helloWorld.allowedMethods());
+app.use(recaptcha.routes(), recaptcha.allowedMethods());
 
 export default app;
